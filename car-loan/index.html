@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Loan EMI Calculator – Calculate Monthly Car EMI | EMICalc</title>
+<meta name="description" content="Free car loan EMI calculator. Calculate your monthly car loan EMI, total interest, and view full amortization schedule. Works for all banks and NBFCs.">
+<meta name="keywords" content="car loan emi calculator, vehicle loan emi calculator, auto loan calculator india, car loan calculator sbi hdfc, monthly emi for car loan">
+<link rel="canonical" href="https://emicalc.in/car-loan/">
+<meta property="og:title" content="Car Loan EMI Calculator – EMICalc">
+<meta property="og:description" content="Calculate your car loan monthly EMI with amortization schedule. Free, instant, no signup.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Car Loan EMI Calculator",
+  "url": "https://emicalc.in/car-loan/",
+  "description": "Free car loan EMI calculator with amortization schedule.",
+  "applicationCategory": "FinanceApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the current car loan interest rate in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Car loan interest rates in India range from 8.5% to 15% per annum. SBI offers from 8.75%, HDFC from 9.4%, ICICI from 9%, and Axis Bank from 9.25%. Rates depend on the car model, loan amount, and your credit score." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the EMI for a ₹10 lakh car loan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a ₹10 lakh car loan at 10% for 5 years, the monthly EMI is approximately ₹21,247. At 9% for 5 years, EMI is ₹20,758." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none; color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 Home</a>
+    <a href="../home-loan/">🏠 Home Loan</a>
+    <a href="../car-loan/" class="active">🚗 Car Loan</a>
+    <a href="../personal-loan/">💳 Personal Loan</a>
+    <a href="../compare/">⚖️ Compare</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">Car Loan EMI Calculator</h1>
+  <p style="font-size:14px; color:#3730a3; margin-bottom:20px;">Calculate your monthly car loan EMI with full repayment schedule</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Car Loan Details</div>
+      <div class="field">
+        <label>Loan Amount</label>
+        <div class="input-prefix"><span>₹</span><input type="number" id="amount" value="800000" min="10000" step="10000" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Interest Rate (per year)</label>
+        <div class="input-suffix"><span>%</span><input type="number" id="rate" value="9.5" min="1" max="30" step="0.1" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Loan Tenure</label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input type="number" id="tenure-yr" value="5" min="1" max="10" placeholder="Years" oninput="syncTenure('yr')">
+          <input type="number" id="tenure-mo" value="60" min="1" max="120" placeholder="Months" oninput="syncTenure('mo')">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;">
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Years</div>
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Months</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="result-grid">
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Monthly EMI</div>
+          <div class="result-value big" id="r-emi">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Principal</div>
+          <div class="result-value" id="r-principal">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="r-interest">₹0</div>
+        </div>
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Total Payment</div>
+          <div class="result-value" id="r-total">₹0</div>
+        </div>
+      </div>
+      <div class="pie-wrap">
+        <canvas id="pie" width="120" height="120"></canvas>
+        <div class="pie-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4f46e5"></div><span id="legend-p">Principal: ₹0</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e0e7ff"></div><span id="legend-i">Interest: ₹0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="amort-head">
+      <div class="amort-title">Amortization Schedule</div>
+      <div class="amort-toggle" id="toggle-btn" onclick="toggleAll()">Show All Months</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+        <tbody id="amort-body"></tbody>
+      </table>
+    </div>
+    <button class="show-all-btn" id="show-all-btn" onclick="toggleAll()">▼ Show All Months</button>
+  </div>
+
+  <div class="seo-section">
+    <h2>Car Loan EMI Calculator — Everything You Need to Know</h2>
+    <p>A car loan EMI depends on three things: the loan amount (usually 80–90% of the car's on-road price), the interest rate offered by the bank, and the repayment tenure (typically 1–7 years for cars).</p>
+
+    <h3>Car Loan Interest Rates 2025</h3>
+    <ul>
+      <li><strong>SBI</strong>: 8.75% – 9.75% p.a.</li>
+      <li><strong>HDFC Bank</strong>: 9.40% – 11.00% p.a.</li>
+      <li><strong>ICICI Bank</strong>: 9.00% – 11.50% p.a.</li>
+      <li><strong>Axis Bank</strong>: 9.25% – 11.00% p.a.</li>
+    </ul>
+
+    <h3>Frequently Asked Questions</h3>
+    <details>
+      <summary>What percentage of car price can I get as a loan?</summary>
+      <p>Most banks finance up to 80–90% of the on-road price. Some banks offer 100% financing for salaried customers with a good credit score. The rest must be paid as a down payment.</p>
+    </details>
+    <details>
+      <summary>What is the maximum car loan tenure?</summary>
+      <p>Most banks offer car loan tenure from 1 to 7 years. Some NBFCs offer up to 8 years. Longer tenure means lower EMI but more total interest paid.</p>
+    </details>
+    <details>
+      <summary>Can I foreclose a car loan early?</summary>
+      <p>Yes. Most banks allow foreclosure after 6–12 EMIs. There may be a prepayment penalty of 1–5% of the outstanding amount on fixed-rate car loans.</p>
+    </details>
+    <div style="margin-top:16px; font-size:12px; color:#3730a3; text-align:center;">
+      Also try: <a href="../home-loan/" style="color:#4f46e5;">Home Loan EMI</a> · <a href="../personal-loan/" style="color:#4f46e5;">Personal Loan EMI</a> · <a href="../compare/" style="color:#4f46e5;">Compare Loans</a>
+    </div>
+  </div>
+</div>
+<footer>&copy; 2025 EMICalc · <a href="../">All Calculators</a></footer>
+<script src="../js/calc.js"></script>
+<script>
+let showAll = false, amortRows = [];
+function syncTenure(from) {
+  if (from === 'yr') document.getElementById('tenure-mo').value = Math.round(parseFloat(document.getElementById('tenure-yr').value) * 12) || '';
+  else document.getElementById('tenure-yr').value = (parseFloat(document.getElementById('tenure-mo').value) / 12).toFixed(1);
+  calculate();
+}
+function calculate() {
+  const P = parseFloat(document.getElementById('amount').value) || 0;
+  const R = parseFloat(document.getElementById('rate').value) || 0;
+  const N = parseInt(document.getElementById('tenure-mo').value) || 0;
+  if (!P || !R || !N) return;
+  const { emi, totalInterest, rows } = buildAmortization(P, R, N);
+  amortRows = rows;
+  document.getElementById('r-emi').textContent = fmt(emi);
+  document.getElementById('r-principal').textContent = fmt(P);
+  document.getElementById('r-interest').textContent = fmt(totalInterest);
+  document.getElementById('r-total').textContent = fmt(P + totalInterest);
+  document.getElementById('legend-p').textContent = 'Principal: ' + fmt(P);
+  document.getElementById('legend-i').textContent = 'Interest: ' + fmt(totalInterest);
+  drawPie('pie', P, totalInterest);
+  renderTable('amort-body', rows, showAll);
+}
+function toggleAll() {
+  showAll = !showAll;
+  document.getElementById('toggle-btn').textContent = showAll ? 'Show First Year' : 'Show All Months';
+  document.getElementById('show-all-btn').textContent = showAll ? '▲ Show Less' : '▼ Show All Months';
+  renderTable('amort-body', amortRows, showAll);
+}
+calculate();
+</script>
+</body>
+</html>

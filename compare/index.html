@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Loan Offers – Which Loan is Better? | EMICalc</title>
+<meta name="description" content="Compare two loan offers side by side. Enter the loan amount, interest rate and tenure for each and instantly see which loan costs less.">
+<meta name="keywords" content="compare loan offers, which bank loan is better, loan comparison calculator india, home loan comparison, interest rate comparison">
+<link rel="canonical" href="https://emicalc.in/compare/">
+<meta property="og:title" content="Compare Two Loan Offers – EMICalc">
+<meta property="og:description" content="Side-by-side loan comparison. See which offer saves you more money.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none; color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 Home</a>
+    <a href="../home-loan/">🏠 Home Loan</a>
+    <a href="../car-loan/">🚗 Car Loan</a>
+    <a href="../personal-loan/">💳 Personal Loan</a>
+    <a href="../compare/" class="active">⚖️ Compare</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">Compare Two Loan Offers</h1>
+  <p style="font-size:14px; color:#3730a3; margin-bottom:20px;">Enter details for two loan offers to see which one costs less</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:#4f46e5;">🏦 Loan Offer A</div>
+      <div class="field"><label>Loan Amount</label>
+        <div class="input-prefix"><span>₹</span><input type="number" id="a-amount" value="5000000" oninput="compare()"></div>
+      </div>
+      <div class="field"><label>Interest Rate (% p.a.)</label>
+        <div class="input-suffix"><span>%</span><input type="number" id="a-rate" value="9" step="0.1" oninput="compare()"></div>
+      </div>
+      <div class="field"><label>Tenure (Months)</label>
+        <input type="number" id="a-tenure" value="240" oninput="compare()">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#7c3aed;">🏦 Loan Offer B</div>
+      <div class="field"><label>Loan Amount</label>
+        <div class="input-prefix"><span>₹</span><input type="number" id="b-amount" value="5000000" oninput="compare()"></div>
+      </div>
+      <div class="field"><label>Interest Rate (% p.a.)</label>
+        <div class="input-suffix"><span>%</span><input type="number" id="b-rate" value="9.5" step="0.1" oninput="compare()"></div>
+      </div>
+      <div class="field"><label>Tenure (Months)</label>
+        <input type="number" id="b-tenure" value="240" oninput="compare()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;" id="compare-result">
+    <div class="card-title">Comparison Result</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="text-align:left;">Metric</th><th>Loan A</th><th>Loan B</th><th>Difference</th></tr></thead>
+        <tbody id="compare-body"></tbody>
+      </table>
+    </div>
+    <div id="verdict" style="margin-top:16px; padding:14px; border-radius:12px; background:#eef2ff; font-size:14px; font-weight:700; color:#4338ca; text-align:center;"></div>
+  </div>
+
+  <div class="seo-section">
+    <h2>How to Compare Loan Offers</h2>
+    <p>When comparing two loan offers, do not just look at the interest rate. Consider the EMI, total interest payable, and the tenure. A loan with a slightly higher rate but shorter tenure may cost less in total interest than a lower-rate loan with a longer tenure.</p>
+    <ul>
+      <li>Same loan amount? The one with lower total payment wins.</li>
+      <li>Different amounts? Compare the total cost relative to what you borrow.</li>
+      <li>Always factor in processing fees (0.5–2% of loan amount) which are not shown here.</li>
+    </ul>
+    <div style="margin-top:16px; font-size:12px; color:#3730a3; text-align:center;">
+      Also try: <a href="../home-loan/" style="color:#4f46e5;">Home Loan EMI</a> · <a href="../car-loan/" style="color:#4f46e5;">Car Loan EMI</a> · <a href="../personal-loan/" style="color:#4f46e5;">Personal Loan EMI</a>
+    </div>
+  </div>
+</div>
+<footer>&copy; 2025 EMICalc · <a href="../">All Calculators</a></footer>
+<script src="../js/calc.js"></script>
+<script>
+function compare() {
+  const aP = parseFloat(document.getElementById('a-amount').value) || 0;
+  const aR = parseFloat(document.getElementById('a-rate').value) || 0;
+  const aN = parseInt(document.getElementById('a-tenure').value) || 0;
+  const bP = parseFloat(document.getElementById('b-amount').value) || 0;
+  const bR = parseFloat(document.getElementById('b-rate').value) || 0;
+  const bN = parseInt(document.getElementById('b-tenure').value) || 0;
+  if (!aP || !aR || !aN || !bP || !bR || !bN) return;
+
+  const a = buildAmortization(aP, aR, aN);
+  const b = buildAmortization(bP, bR, bN);
+  const aTot = aP + a.totalInterest, bTot = bP + b.totalInterest;
+  const diff = (v1, v2) => { const d = v1 - v2; return (d > 0 ? '+' : '') + fmt(d); };
+
+  document.getElementById('compare-body').innerHTML = `
+    <tr><td>Monthly EMI</td><td>${fmt(a.emi)}</td><td>${fmt(b.emi)}</td><td>${diff(a.emi, b.emi)}</td></tr>
+    <tr><td>Total Interest</td><td>${fmt(a.totalInterest)}</td><td>${fmt(b.totalInterest)}</td><td>${diff(a.totalInterest, b.totalInterest)}</td></tr>
+    <tr><td>Total Payment</td><td>${fmt(aTot)}</td><td>${fmt(bTot)}</td><td>${diff(aTot, bTot)}</td></tr>
+    <tr><td>Tenure</td><td>${aN} months</td><td>${bN} months</td><td>${aN - bN} months</td></tr>
+  `;
+
+  const save = Math.abs(aTot - bTot);
+  const winner = aTot <= bTot ? 'A' : 'B';
+  document.getElementById('verdict').textContent = `✅ Loan ${winner} saves you ${fmt(save)} in total interest payments.`;
+}
+compare();
+</script>
+</body>
+</html>

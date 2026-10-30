@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Loan EMI Calculator – Calculate Monthly EMI | EMICalc</title>
+<meta name="description" content="Free personal loan EMI calculator. Calculate monthly EMI for personal loan, total interest payable, and full amortization table. Instant results, no signup.">
+<meta name="keywords" content="personal loan emi calculator, personal loan calculator india, monthly emi personal loan, hdfc personal loan emi, sbi personal loan calculator">
+<link rel="canonical" href="https://emicalc.in/personal-loan/">
+<meta property="og:title" content="Personal Loan EMI Calculator – EMICalc">
+<meta property="og:description" content="Calculate your personal loan monthly EMI. See total interest and full repayment schedule.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Personal Loan EMI Calculator",
+  "url": "https://emicalc.in/personal-loan/",
+  "applicationCategory": "FinanceApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the interest rate for personal loans in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Personal loan interest rates in India range from 10.5% to 24% per annum. Top banks offer: SBI 11–15%, HDFC 10.5–24%, ICICI 10.65–16%, Axis Bank 10.49–22%. Rates depend on credit score, income, and employment." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the EMI for a ₹5 lakh personal loan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a ₹5 lakh personal loan at 12% for 3 years, monthly EMI is approximately ₹16,607. At 15% for 3 years, EMI is ₹17,333." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none; color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 Home</a>
+    <a href="../home-loan/">🏠 Home Loan</a>
+    <a href="../car-loan/">🚗 Car Loan</a>
+    <a href="../personal-loan/" class="active">💳 Personal Loan</a>
+    <a href="../compare/">⚖️ Compare</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">Personal Loan EMI Calculator</h1>
+  <p style="font-size:14px; color:#3730a3; margin-bottom:20px;">Calculate monthly EMI for your personal loan instantly</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Personal Loan Details</div>
+      <div class="field">
+        <label>Loan Amount</label>
+        <div class="input-prefix"><span>₹</span><input type="number" id="amount" value="500000" min="10000" step="5000" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Interest Rate (per year)</label>
+        <div class="input-suffix"><span>%</span><input type="number" id="rate" value="12" min="1" max="40" step="0.1" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Loan Tenure</label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input type="number" id="tenure-yr" value="3" min="1" max="5" placeholder="Years" oninput="syncTenure('yr')">
+          <input type="number" id="tenure-mo" value="36" min="1" max="60" placeholder="Months" oninput="syncTenure('mo')">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;">
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Years</div>
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Months</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="result-grid">
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Monthly EMI</div>
+          <div class="result-value big" id="r-emi">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Principal</div>
+          <div class="result-value" id="r-principal">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="r-interest">₹0</div>
+        </div>
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Total Payment</div>
+          <div class="result-value" id="r-total">₹0</div>
+        </div>
+      </div>
+      <div class="pie-wrap">
+        <canvas id="pie" width="120" height="120"></canvas>
+        <div class="pie-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4f46e5"></div><span id="legend-p">Principal: ₹0</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e0e7ff"></div><span id="legend-i">Interest: ₹0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="amort-head">
+      <div class="amort-title">Amortization Schedule</div>
+      <div class="amort-toggle" id="toggle-btn" onclick="toggleAll()">Show All Months</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+        <tbody id="amort-body"></tbody>
+      </table>
+    </div>
+    <button class="show-all-btn" id="show-all-btn" onclick="toggleAll()">▼ Show All Months</button>
+  </div>
+
+  <div class="seo-section">
+    <h2>Personal Loan EMI — What You Should Know</h2>
+    <p>Personal loans have higher interest rates than home or car loans because they are unsecured (no collateral). Rates vary from 10.5% to 24% depending on your credit score, income, and the lender. Always compare rates before applying.</p>
+
+    <h3>Personal Loan Interest Rates 2025</h3>
+    <ul>
+      <li><strong>SBI</strong>: 11.00% – 14.00% p.a.</li>
+      <li><strong>HDFC Bank</strong>: 10.50% – 24.00% p.a.</li>
+      <li><strong>ICICI Bank</strong>: 10.65% – 16.00% p.a.</li>
+      <li><strong>Axis Bank</strong>: 10.49% – 22.00% p.a.</li>
+      <li><strong>Bajaj Finance</strong>: 11.00% – 35.00% p.a.</li>
+    </ul>
+
+    <h3>Frequently Asked Questions</h3>
+    <details>
+      <summary>What is the maximum personal loan amount I can get?</summary>
+      <p>Most banks offer personal loans from ₹50,000 to ₹40 lakh. The amount depends on your monthly income, existing obligations, and credit score. Typically, you can get up to 20–25× your monthly salary.</p>
+    </details>
+    <details>
+      <summary>How to get a lower interest rate on a personal loan?</summary>
+      <p>Maintain a credit score above 750, apply with your existing bank where you have salary account, compare offers from multiple lenders, and avoid applying at too many places simultaneously as it reduces your score.</p>
+    </details>
+    <details>
+      <summary>What is the EMI for ₹1 lakh personal loan?</summary>
+      <p>At 12% for 1 year: ₹8,885/month. At 12% for 2 years: ₹4,707/month. At 15% for 2 years: ₹4,849/month.</p>
+    </details>
+    <div style="margin-top:16px; font-size:12px; color:#3730a3; text-align:center;">
+      Also try: <a href="../home-loan/" style="color:#4f46e5;">Home Loan EMI</a> · <a href="../car-loan/" style="color:#4f46e5;">Car Loan EMI</a> · <a href="../compare/" style="color:#4f46e5;">Compare Loans</a>
+    </div>
+  </div>
+</div>
+<footer>&copy; 2025 EMICalc · <a href="../">All Calculators</a></footer>
+<script src="../js/calc.js"></script>
+<script>
+let showAll = false, amortRows = [];
+function syncTenure(from) {
+  if (from === 'yr') document.getElementById('tenure-mo').value = Math.round(parseFloat(document.getElementById('tenure-yr').value) * 12) || '';
+  else document.getElementById('tenure-yr').value = (parseFloat(document.getElementById('tenure-mo').value) / 12).toFixed(1);
+  calculate();
+}
+function calculate() {
+  const P = parseFloat(document.getElementById('amount').value) || 0;
+  const R = parseFloat(document.getElementById('rate').value) || 0;
+  const N = parseInt(document.getElementById('tenure-mo').value) || 0;
+  if (!P || !R || !N) return;
+  const { emi, totalInterest, rows } = buildAmortization(P, R, N);
+  amortRows = rows;
+  document.getElementById('r-emi').textContent = fmt(emi);
+  document.getElementById('r-principal').textContent = fmt(P);
+  document.getElementById('r-interest').textContent = fmt(totalInterest);
+  document.getElementById('r-total').textContent = fmt(P + totalInterest);
+  document.getElementById('legend-p').textContent = 'Principal: ' + fmt(P);
+  document.getElementById('legend-i').textContent = 'Interest: ' + fmt(totalInterest);
+  drawPie('pie', P, totalInterest);
+  renderTable('amort-body', rows, showAll);
+}
+function toggleAll() {
+  showAll = !showAll;
+  document.getElementById('toggle-btn').textContent = showAll ? 'Show First Year' : 'Show All Months';
+  document.getElementById('show-all-btn').textContent = showAll ? '▲ Show Less' : '▼ Show All Months';
+  renderTable('amort-body', amortRows, showAll);
+}
+calculate();
+</script>
+</body>
+</html>

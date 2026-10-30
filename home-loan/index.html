@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Loan EMI Calculator – Calculate Monthly EMI Instantly | EMICalc</title>
+<meta name="description" content="Free home loan EMI calculator. Enter loan amount, interest rate and tenure to get your monthly EMI, total interest payable, and full amortization schedule.">
+<meta name="keywords" content="home loan emi calculator, housing loan emi calculator, sbi home loan emi calculator, hdfc home loan emi, home loan calculator india, monthly emi home loan">
+<link rel="canonical" href="https://emicalc.in/home-loan/">
+<meta property="og:title" content="Home Loan EMI Calculator – EMICalc">
+<meta property="og:description" content="Calculate your home loan monthly EMI with full amortization table. Free, instant, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emicalc.in/home-loan/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Home Loan EMI Calculator",
+  "url": "https://emicalc.in/home-loan/",
+  "description": "Free home loan EMI calculator with amortization schedule.",
+  "applicationCategory": "FinanceApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is home loan EMI calculated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Home loan EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ−1), where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the tenure in months." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the EMI for a ₹50 lakh home loan at 9%?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a ₹50 lakh home loan at 9% per annum for 20 years (240 months), the monthly EMI is approximately ₹44,986. Total interest payable is about ₹57.97 lakh." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which bank gives the lowest home loan interest rate in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SBI, Bank of Baroda, and Union Bank of India typically offer the lowest home loan rates in India, starting around 8.5% per annum. Private banks like HDFC, ICICI and Axis Bank offer rates from 8.75%. Rates depend on credit score and loan amount." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum home loan tenure in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most banks offer home loan tenure up to 30 years. Longer tenure reduces your monthly EMI but increases total interest paid. SBI offers up to 30 years, HDFC up to 30 years." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none; color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 Home</a>
+    <a href="../home-loan/" class="active">🏠 Home Loan</a>
+    <a href="../car-loan/">🚗 Car Loan</a>
+    <a href="../personal-loan/">💳 Personal Loan</a>
+    <a href="../compare/">⚖️ Compare</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">Home Loan EMI Calculator</h1>
+  <p style="font-size:14px; color:#3730a3; margin-bottom:20px;">Calculate your monthly home loan EMI with full repayment schedule</p>
+
+  <div class="two-col">
+    <!-- INPUT -->
+    <div class="card">
+      <div class="card-title">Loan Details</div>
+      <div class="field">
+        <label>Loan Amount</label>
+        <div class="input-prefix"><span>₹</span><input type="number" id="amount" value="5000000" min="10000" step="10000" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Interest Rate (per year)</label>
+        <div class="input-suffix"><span>%</span><input type="number" id="rate" value="9" min="1" max="30" step="0.1" oninput="calculate()"></div>
+      </div>
+      <div class="field">
+        <label>Loan Tenure</label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input type="number" id="tenure-yr" value="20" min="1" max="30" placeholder="Years" oninput="syncTenure('yr')">
+          <input type="number" id="tenure-mo" value="240" min="1" max="360" placeholder="Months" oninput="syncTenure('mo')">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;">
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Years</div>
+          <div style="font-size:11px; color:#6366f1; text-align:center;">Months</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div>
+      <div class="result-grid">
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Monthly EMI</div>
+          <div class="result-value big" id="r-emi">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Principal</div>
+          <div class="result-value" id="r-principal">₹0</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="r-interest">₹0</div>
+        </div>
+        <div class="result-card" style="grid-column:1/-1;">
+          <div class="result-label">Total Payment</div>
+          <div class="result-value" id="r-total">₹0</div>
+          <div class="result-sub" id="r-ratio"></div>
+        </div>
+      </div>
+      <div class="pie-wrap">
+        <canvas id="pie" width="120" height="120"></canvas>
+        <div class="pie-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4f46e5"></div><span id="legend-p">Principal: ₹0</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e0e7ff"></div><span id="legend-i">Interest: ₹0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMORTIZATION -->
+  <div class="card" style="margin-top:20px;">
+    <div class="amort-head">
+      <div class="amort-title">Month-by-Month Amortization Schedule</div>
+      <div class="amort-toggle" id="toggle-btn" onclick="toggleAll()">Show All Months</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+        <tbody id="amort-body"></tbody>
+      </table>
+    </div>
+    <button class="show-all-btn" id="show-all-btn" onclick="toggleAll()">▼ Show All Months</button>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section">
+    <h2>Home Loan EMI Calculator — How to Use</h2>
+    <p>A home loan is typically the largest financial commitment you will make. Understanding your monthly EMI helps you plan your budget and choose the right loan. Enter your <strong>loan amount</strong>, <strong>interest rate</strong>, and <strong>tenure</strong> to instantly see:</p>
+    <ul>
+      <li>Monthly EMI amount</li>
+      <li>Total interest you will pay over the loan period</li>
+      <li>Total amount paid (principal + interest)</li>
+      <li>Month-by-month amortization table</li>
+    </ul>
+
+    <h3>Home Loan Interest Rates 2025</h3>
+    <p>Current home loan interest rates in India (approximate):</p>
+    <ul>
+      <li><strong>SBI</strong>: 8.50% – 9.65% p.a.</li>
+      <li><strong>HDFC Bank</strong>: 8.75% – 9.65% p.a.</li>
+      <li><strong>ICICI Bank</strong>: 8.75% – 9.80% p.a.</li>
+      <li><strong>Axis Bank</strong>: 8.75% – 9.15% p.a.</li>
+      <li><strong>Bank of Baroda</strong>: 8.40% – 10.65% p.a.</li>
+    </ul>
+
+    <h3>Tips to reduce your home loan EMI</h3>
+    <ul>
+      <li>Make a larger down payment (reduces principal)</li>
+      <li>Negotiate a lower interest rate (check multiple banks)</li>
+      <li>Extend the tenure (lower EMI but more total interest)</li>
+      <li>Make part-prepayments when you have extra funds</li>
+      <li>Transfer your loan to a lower-rate bank (balance transfer)</li>
+    </ul>
+
+    <h3>Frequently Asked Questions</h3>
+    <details>
+      <summary>How is home loan EMI calculated?</summary>
+      <p>EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ−1), where P = principal, r = monthly rate (annual rate ÷ 1200), n = tenure in months.</p>
+    </details>
+    <details>
+      <summary>What is the EMI for a ₹30 lakh home loan at 9% for 20 years?</summary>
+      <p>The monthly EMI for a ₹30 lakh home loan at 9% for 20 years is approximately ₹26,992. Total interest paid over 20 years is about ₹34.78 lakh.</p>
+    </details>
+    <details>
+      <summary>What is the EMI for a ₹50 lakh home loan?</summary>
+      <p>At 9% for 20 years: ₹44,986/month. At 8.5% for 20 years: ₹43,391/month. At 9% for 30 years: ₹40,231/month.</p>
+    </details>
+    <details>
+      <summary>Can I pay off my home loan early?</summary>
+      <p>Yes. You can make part-prepayments at any time. RBI rules say banks cannot charge prepayment penalty on floating rate home loans. Fixed rate loans may have a small prepayment fee.</p>
+    </details>
+
+    <div style="margin-top:16px; font-size:12px; color:#3730a3; text-align:center;">
+      Also try: <a href="../car-loan/" style="color:#4f46e5;">Car Loan EMI</a> · <a href="../personal-loan/" style="color:#4f46e5;">Personal Loan EMI</a> · <a href="../compare/" style="color:#4f46e5;">Compare Loans</a> · <a href="https://nxtcraft.github.io/tradecalc/" style="color:#4f46e5;">TradeCalc</a>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2025 EMICalc · <a href="../">All Calculators</a></footer>
+
+<script src="../js/calc.js"></script>
+<script>
+let showAll = false;
+let amortRows = [];
+
+function syncTenure(from) {
+  if (from === 'yr') {
+    document.getElementById('tenure-mo').value = Math.round(parseFloat(document.getElementById('tenure-yr').value) * 12) || '';
+  } else {
+    document.getElementById('tenure-yr').value = (parseFloat(document.getElementById('tenure-mo').value) / 12).toFixed(1);
+  }
+  calculate();
+}
+
+function calculate() {
+  const P = parseFloat(document.getElementById('amount').value) || 0;
+  const R = parseFloat(document.getElementById('rate').value) || 0;
+  const N = parseInt(document.getElementById('tenure-mo').value) || 0;
+  if (!P || !R || !N) return;
+
+  const { emi, totalInterest, rows } = buildAmortization(P, R, N);
+  const totalPayment = P + totalInterest;
+  amortRows = rows;
+
+  document.getElementById('r-emi').textContent = fmt(emi);
+  document.getElementById('r-principal').textContent = fmt(P);
+  document.getElementById('r-interest').textContent = fmt(totalInterest);
+  document.getElementById('r-total').textContent = fmt(totalPayment);
+  document.getElementById('r-ratio').textContent = 'Interest is ' + Math.round(totalInterest / P * 100) + '% of principal';
+  document.getElementById('legend-p').textContent = 'Principal: ' + fmt(P);
+  document.getElementById('legend-i').textContent = 'Interest: ' + fmt(totalInterest);
+  drawPie('pie', P, totalInterest);
+  renderTable('amort-body', rows, showAll);
+}
+
+function toggleAll() {
+  showAll = !showAll;
+  document.getElementById('toggle-btn').textContent = showAll ? 'Show First Year' : 'Show All Months';
+  document.getElementById('show-all-btn').textContent = showAll ? '▲ Show Less' : '▼ Show All Months';
+  renderTable('amort-body', amortRows, showAll);
+}
+
+calculate();
+</script>
+</body>
+</html>
