@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Loan Prepayment Calculator — Save on Interest | EMICalc</title>
+<meta name="description" content="Free home loan prepayment calculator. See how much interest you save and how many EMIs you reduce by making a lump sum prepayment. Instant result, no signup.">
+<meta name="keywords" content="home loan prepayment calculator, loan prepayment savings, part payment calculator home loan, prepayment benefit calculator, how much to prepay home loan, home loan foreclosure calculator india">
+<link rel="canonical" href="https://nxtcraft.github.io/emicalc/prepayment/">
+<meta property="og:title" content="Home Loan Prepayment Calculator — Save on Interest | EMICalc">
+<meta property="og:description" content="Calculate exactly how much interest you save and how many EMIs you eliminate with a lump sum prepayment. Free, instant.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Home Loan Prepayment Calculator",
+  "url": "https://nxtcraft.github.io/emicalc/prepayment/",
+  "description": "Calculate home loan prepayment savings — interest saved and EMIs reduced. Free, instant.",
+  "applicationCategory": "FinanceApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I prepay my home loan or invest the money?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Prepay if your home loan interest rate is higher than what your investment can reliably earn after tax. A home loan at 8.5% costs more than a fixed deposit earning 7% after tax. But if you can consistently earn 12%+ in equity mutual funds over the long term, investing may beat prepayment. Also consider: prepayment gives guaranteed savings; investment returns are uncertain. The psychological benefit of being debt-free is also real." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to reduce EMI or reduce tenure on prepayment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Reducing tenure saves more total interest. Reducing EMI improves monthly cash flow. Most financial advisors recommend reducing tenure — because the sooner the principal drops, the less interest accrues overall. Choose EMI reduction only if your monthly budget is tight and you need the cash flow relief. Both options save the same amount relative to keeping the same EMI with no prepayment." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there prepayment charges on home loans in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For floating rate home loans from banks and HFCs regulated by the RBI/NHB, prepayment charges are not allowed (RBI circular 2012). For fixed rate loans, prepayment charges of up to 2–3% may apply. Always check your loan agreement. Most major banks (SBI, HDFC, ICICI, Axis) do not charge prepayment fees on floating rate home loans." }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the best time to prepay a home loan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The earlier in the loan tenure you prepay, the more interest you save — because interest is highest in the early years (when the outstanding principal is largest). Making a prepayment in year 2–5 saves significantly more than the same prepayment in year 15. Even small prepayments early in the loan can save lakhs over the tenure." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none; color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 Home</a>
+    <a href="../home-loan/">🏠 Home Loan</a>
+    <a href="../car-loan/">🚗 Car Loan</a>
+    <a href="../personal-loan/">💳 Personal Loan</a>
+    <a href="../compare/">⚖️ Compare</a>
+    <a href="../prepayment/" class="active">💰 Prepayment</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1 style="font-size:22px; font-weight:800; margin-bottom:4px;">Home Loan Prepayment Calculator</h1>
+  <p style="font-size:14px; color:#3730a3; margin-bottom:20px;">See how much interest you save and how many EMIs you eliminate with a lump sum payment</p>
+
+  <div class="two-col">
+    <!-- INPUTS -->
+    <div>
+      <div class="card">
+        <div class="card-title">Current Loan Details</div>
+        <div class="field">
+          <label>Outstanding Loan Amount (₹)</label>
+          <div class="slider-row">
+            <input type="range" id="s_principal" min="100000" max="10000000" step="50000" value="3000000" oninput="syncNum('principal',this.value)">
+            <input type="number" id="principal" value="3000000" min="100000" oninput="syncSlider('s_principal',this.value); calculate()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Annual Interest Rate (%)</label>
+          <div class="slider-row">
+            <input type="range" id="s_rate" min="5" max="20" step="0.1" value="8.5" oninput="syncNum('rate',this.value)">
+            <input type="number" id="rate" value="8.5" min="1" max="30" step="0.1" oninput="syncSlider('s_rate',this.value); calculate()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Remaining Tenure (months)</label>
+          <div class="slider-row">
+            <input type="range" id="s_tenure" min="12" max="360" step="6" value="240" oninput="syncNum('tenure',this.value)">
+            <input type="number" id="tenure" value="240" min="1" oninput="syncSlider('s_tenure',this.value); calculate()">
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <div class="card-title">Prepayment Details</div>
+        <div class="field">
+          <label>Prepayment Amount (₹)</label>
+          <div class="slider-row">
+            <input type="range" id="s_prepay" min="10000" max="2000000" step="10000" value="500000" oninput="syncNum('prepay',this.value)">
+            <input type="number" id="prepay" value="500000" min="1" oninput="syncSlider('s_prepay',this.value); calculate()">
+          </div>
+        </div>
+        <div class="field">
+          <label>After Prepayment, Prefer To</label>
+          <select id="pref" onchange="calculate()">
+            <option value="tenure">Reduce Tenure (save more interest)</option>
+            <option value="emi">Reduce EMI (lower monthly payment)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div>
+      <div class="results-card" id="results" style="display:none;">
+        <div class="result-highlight" id="interest-saved-box">
+          <div class="result-label">Interest Saved</div>
+          <div class="result-value" id="r_interest_saved" style="color:#16a34a;">—</div>
+        </div>
+
+        <div class="result-row"><span>EMI Before Prepayment</span><span id="r_emi_before">—</span></div>
+        <div class="result-row"><span>New Balance After Prepayment</span><span id="r_new_bal">—</span></div>
+
+        <div id="tenure-result">
+          <div class="result-row"><span>Remaining Tenure Before</span><span id="r_tenure_before">—</span></div>
+          <div class="result-row"><span style="font-weight:700; color:#4f46e5;">New Tenure After</span><span id="r_tenure_after" style="color:#4f46e5; font-weight:700;">—</span></div>
+          <div class="result-row"><span>EMIs Saved</span><span id="r_emis_saved" style="color:#16a34a; font-weight:700;">—</span></div>
+        </div>
+
+        <div id="emi-result" style="display:none;">
+          <div class="result-row"><span style="font-weight:700; color:#4f46e5;">New EMI After</span><span id="r_emi_after" style="color:#4f46e5; font-weight:700;">—</span></div>
+          <div class="result-row"><span>Monthly Savings</span><span id="r_emi_saving" style="color:#16a34a; font-weight:700;">—</span></div>
+        </div>
+
+        <div style="margin-top:16px; padding-top:14px; border-top:1px solid #e0e7ff;">
+          <div class="result-row"><span>Total Interest Without Prepayment</span><span id="r_int_without">—</span></div>
+          <div class="result-row"><span>Total Interest With Prepayment</span><span id="r_int_with">—</span></div>
+        </div>
+      </div>
+
+      <div id="no-result" style="background:#f5f3ff; border-radius:14px; padding:28px; text-align:center; color:#6d28d9;">
+        <div style="font-size:32px; margin-bottom:10px;">💰</div>
+        <div style="font-weight:700;">Fill in the details to see your savings</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-section" style="margin-top:32px;">
+    <h2>Home Loan Prepayment — Complete Guide</h2>
+    <p>Making a lump sum prepayment on your home loan is one of the most effective ways to save money — but the timing and method matter. This calculator shows you the exact interest saved and the impact on your tenure or EMI.</p>
+
+    <h3>Reduce tenure vs reduce EMI — which is better?</h3>
+    <p><strong>Reducing tenure</strong> saves more total interest because the principal drops faster, reducing the base on which future interest is calculated. This is almost always the mathematically optimal choice.</p>
+    <p><strong>Reducing EMI</strong> is better if you need monthly cash flow relief — lower EMI every month frees up money for living expenses or other investments. The total interest saved is the same as reducing tenure, but distributed differently.</p>
+
+    <h3>Best time to prepay</h3>
+    <p>Interest is highest in the early years when the outstanding principal is at its maximum. A ₹5 lakh prepayment in year 2 saves far more than the same ₹5 lakh in year 15. If you have surplus cash, prepaying early in the loan tenure gives the best return.</p>
+
+    <h3>Prepayment charges in India</h3>
+    <ul>
+      <li><strong>Floating rate loans</strong>: No prepayment charges allowed (RBI circular)</li>
+      <li><strong>Fixed rate loans</strong>: Banks may charge 2–3% of prepayment amount</li>
+      <li><strong>Tip</strong>: Always confirm with your bank before making the payment</li>
+    </ul>
+
+    <h3>Should you prepay or invest?</h3>
+    <p>Compare your loan interest rate (after tax, if applicable) with expected post-tax investment returns. Home loan at 8.5%? FD returns 7% pre-tax (≈5% post-tax) — prepay. If you can consistently earn 12%+ in equity funds (not guaranteed), investing may win long-term. When in doubt, split: prepay 50%, invest 50%.</p>
+
+    <details style="margin-bottom:8px; border:1px solid #e0e7ff; border-radius:8px; overflow:hidden;">
+      <summary style="padding:12px 14px; cursor:pointer; font-weight:600; font-size:14px; color:#1e1b4b;">Can I make multiple prepayments?</summary>
+      <p style="padding:0 14px 12px; font-size:13px; color:#4338ca; line-height:1.7;">Yes — most banks allow unlimited prepayments on floating rate loans without charges. Making regular annual prepayments (from bonuses, tax refunds, etc.) dramatically accelerates loan payoff. Each prepayment should be followed by a revised amortization schedule from your bank.</p>
+    </details>
+    <details style="border:1px solid #e0e7ff; border-radius:8px; overflow:hidden;">
+      <summary style="padding:12px 14px; cursor:pointer; font-weight:600; font-size:14px; color:#1e1b4b;">Does prepayment affect 80C tax benefit?</summary>
+      <p style="padding:0 14px 12px; font-size:13px; color:#4338ca; line-height:1.7;">The 80C deduction is on the principal repayment portion of your EMI — prepayment counts as principal repayment and is eligible for 80C (subject to the ₹1.5 lakh annual cap, shared with other 80C investments). The interest you save through prepayment is not separately deductable — but paying less interest is still a net financial benefit.</p>
+    </details>
+
+    <div style="margin-top:20px; font-size:12px; color:#6d28d9;">
+      Also useful: <a href="../home-loan/" style="color:#4f46e5;">Home Loan EMI Calculator</a> ·
+      <a href="../compare/" style="color:#4f46e5;">Compare Loans</a> ·
+      <a href="https://nxtcraft.github.io/taxcalc/" style="color:#4f46e5;">Income Tax Calculator</a>
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center; padding:24px; font-size:12px; color:#6d28d9; border-top:1px solid #e0e7ff; margin-top:40px;">
+  &copy; 2026 EMICalc · <a href="https://nxtcraft.github.io/">NxtCraft Tools</a> · Numbers are indicative — confirm with your bank
+</footer>
+
+<script>
+function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function fmtMonths(m) {
+  const y = Math.floor(m / 12), mo = m % 12;
+  return (y ? y + ' yr ' : '') + (mo ? mo + ' mo' : '');
+}
+function syncNum(id, val) { document.getElementById(id).value = val; calculate(); }
+function syncSlider(id, val) { document.getElementById(id).value = val; }
+
+function calcEMI(p, r, n) {
+  if (r === 0) return p / n;
+  return p * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+}
+function totalInterest(p, r, n) {
+  return calcEMI(p, r, n) * n - p;
+}
+
+function calculate() {
+  const P = parseFloat(document.getElementById('principal').value) || 0;
+  const annualRate = parseFloat(document.getElementById('rate').value) || 0;
+  const N = parseInt(document.getElementById('tenure').value) || 0;
+  const prepay = parseFloat(document.getElementById('prepay').value) || 0;
+  const pref = document.getElementById('pref').value;
+
+  if (P <= 0 || annualRate <= 0 || N <= 0 || prepay <= 0) {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('no-result').style.display = '';
+    return;
+  }
+
+  const r = annualRate / 100 / 12;
+  const emiOld = calcEMI(P, r, N);
+  const intWithout = emiOld * N - P;
+  const newBal = Math.max(0, P - prepay);
+
+  let intWith, tenureAfter, emiAfter, emisSaved, emiSaving;
+
+  if (pref === 'tenure') {
+    // Same EMI, find new tenure
+    emiAfter = emiOld;
+    if (r === 0) {
+      tenureAfter = Math.ceil(newBal / emiAfter);
+    } else {
+      tenureAfter = Math.ceil(Math.log(emiAfter / (emiAfter - newBal * r)) / Math.log(1 + r));
+    }
+    if (!isFinite(tenureAfter) || tenureAfter <= 0) tenureAfter = 0;
+    intWith = emiAfter * tenureAfter - newBal;
+    emisSaved = N - tenureAfter;
+    document.getElementById('tenure-result').style.display = '';
+    document.getElementById('emi-result').style.display = 'none';
+    document.getElementById('r_tenure_before').textContent = fmtMonths(N);
+    document.getElementById('r_tenure_after').textContent = fmtMonths(tenureAfter);
+    document.getElementById('r_emis_saved').textContent = emisSaved > 0 ? emisSaved + ' EMIs (' + fmtMonths(emisSaved) + ')' : '0';
+  } else {
+    // Same tenure, find new EMI
+    tenureAfter = N;
+    emiAfter = calcEMI(newBal, r, N);
+    intWith = emiAfter * N - newBal;
+    emiSaving = emiOld - emiAfter;
+    document.getElementById('tenure-result').style.display = 'none';
+    document.getElementById('emi-result').style.display = '';
+    document.getElementById('r_emi_after').textContent = fmt(emiAfter);
+    document.getElementById('r_emi_saving').textContent = fmt(emiSaving) + '/month';
+  }
+
+  const interestSaved = intWithout - intWith;
+
+  document.getElementById('r_emi_before').textContent = fmt(emiOld);
+  document.getElementById('r_new_bal').textContent = fmt(newBal);
+  document.getElementById('r_interest_saved').textContent = fmt(interestSaved);
+  document.getElementById('r_int_without').textContent = fmt(intWithout);
+  document.getElementById('r_int_with').textContent = fmt(Math.max(0, intWith));
+
+  document.getElementById('results').style.display = '';
+  document.getElementById('no-result').style.display = 'none';
+}
+
+calculate();
+</script>
+</body>
+</html>
