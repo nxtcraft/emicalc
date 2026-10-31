@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Calculate EMI & Prepayment Savings — Step by Step Guide | EMICalc</title>
+<meta name="description" content="Step-by-step guide to calculating home loan EMI, total interest, prepayment savings, and comparing loans. Filled examples for every calculator.">
+<meta name="keywords" content="how to calculate home loan EMI, EMI calculator kaise use kare, prepayment calculator how to use, home loan comparison calculator, loan EMI calculation example, prepayment savings calculator guide">
+<link rel="canonical" href="https://nxtcraft.github.io/emicalc/guide/">
+<meta property="og:title" content="How to Calculate EMI & Prepayment Savings — Step by Step Guide">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate Home Loan EMI and Prepayment Savings",
+  "description": "Step-by-step guide to using EMICalc for loan EMI, prepayment, and loan comparison calculations",
+  "totalTime": "PT3M",
+  "step": [
+    { "@type": "HowToStep", "name": "Enter loan amount", "text": "Enter the total loan amount in rupees. For a home loan, this is the sanctioned amount, not the property value." },
+    { "@type": "HowToStep", "name": "Enter interest rate", "text": "Enter the annual interest rate as a number. For example, 8.5 for 8.5% per annum." },
+    { "@type": "HowToStep", "name": "Enter tenure", "text": "Enter the loan tenure in years. 20 years is common for home loans." },
+    { "@type": "HowToStep", "name": "Read the result", "text": "The calculator shows monthly EMI, total payment, and total interest. The chart shows how much goes to principal vs interest over time." },
+    { "@type": "HowToStep", "name": "Calculate prepayment savings", "text": "Go to the Prepayment tab. Enter your outstanding loan details and a one-time prepayment amount to see how much interest you save." }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EMI?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EMI stands for Equated Monthly Instalment — the fixed amount you pay every month for a loan. It includes both the principal repayment and the interest component. Early in the loan, most of your EMI goes toward interest; as the loan matures, more goes toward principal." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a prepayment of ₹5 lakh save on a home loan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on when in the loan tenure you make the prepayment. On a ₹50 lakh loan at 8.5% for 20 years, a prepayment of ₹5 lakh in year 5 typically saves ₹8–12 lakh in total interest and reduces tenure by 2–3 years. The earlier in the tenure you prepay, the larger the savings — because interest is charged on the outstanding principal." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I reduce EMI or reduce tenure when making a prepayment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Reducing tenure saves more money — you pay off the loan faster and accumulate less interest. Reducing EMI keeps the same tenure but lowers your monthly payment, which helps if your cash flow is tight. If you can afford the current EMI, choose 'Reduce Tenure' for maximum savings." }
+    }
+  ]
+}
+</script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #f0f9ff; color: #1a1a2e; }
+.site-header { background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%); color: white; padding: 14px 24px; }
+.logo { font-size: 20px; font-weight: 800; }
+.logo a { color: white; text-decoration: none; }
+.logo span { opacity: .7; }
+.container { max-width: 820px; margin: 0 auto; padding: 32px 20px 60px; }
+.breadcrumb { font-size: 12px; color: #0ea5e9; margin-bottom: 20px; }
+.breadcrumb a { color: #0ea5e9; text-decoration: none; }
+h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.subtitle { font-size: 14px; color: #555; margin-bottom: 32px; line-height: 1.6; }
+.step-card { background: white; border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(3,105,161,.08); border-left: 4px solid #0ea5e9; }
+.step-num { font-size: 11px; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.step-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+.step-body { font-size: 14px; color: #333; line-height: 1.7; }
+.example-box { background: #e0f2fe; border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 13px; }
+.example-box strong { color: #0369a1; display: block; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+.result-box { background: white; border: 2px solid #0ea5e9; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+.result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0f9ff; font-size: 13px; }
+.result-row:last-child { border-bottom: none; font-weight: 700; color: #0369a1; }
+.r-label { color: #555; }
+.r-val { font-weight: 600; color: #1a1a2e; }
+.savings-box { background: #f0fdf4; border: 2px solid #86efac; border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 13px; }
+.savings-box strong { color: #166534; display: block; margin-bottom: 8px; }
+.tip-box { background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #92400e; line-height: 1.6; }
+.cta-box { background: linear-gradient(135deg,#0369a1,#0ea5e9); color: white; border-radius: 16px; padding: 28px 32px; text-align: center; margin: 36px 0; }
+.cta-box h2 { font-size: 20px; margin-bottom: 8px; }
+.cta-box p { font-size: 13px; opacity: .85; margin-bottom: 16px; }
+.cta-btn { display: inline-block; background: white; color: #0369a1; padding: 12px 28px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; }
+h2 { font-size: 20px; font-weight: 700; margin: 36px 0 16px; }
+details { border: 1px solid #bae6fd; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+details summary { padding: 13px 16px; cursor: pointer; font-weight: 600; font-size: 14px; }
+details p { padding: 0 16px 14px; font-size: 13px; color: #555; line-height: 1.7; }
+.nav-pills { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+.nav-pill { background: #e0f2fe; color: #0369a1; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; }
+footer { text-align: center; padding: 20px; font-size: 12px; color: #0ea5e9; border-top: 1px solid #bae6fd; margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="site-header">
+  <div class="logo"><a href="../">EMI<span>Calc</span></a></div>
+</div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="../">EMICalc</a> › How to Use</div>
+  <h1>How to Calculate EMI & Prepayment Savings</h1>
+  <p class="subtitle">EMICalc has 5 calculators. This guide shows exactly how to use each one, with filled examples so you know what to expect.</p>
+
+  <div class="nav-pills">
+    <a href="#emi" class="nav-pill">🏠 EMI Calculator</a>
+    <a href="#prepayment" class="nav-pill">💰 Prepayment</a>
+    <a href="#compare" class="nav-pill">📊 Compare Loans</a>
+    <a href="#affordability" class="nav-pill">💡 Affordability</a>
+    <a href="#tax" class="nav-pill">🧾 Tax Benefit</a>
+  </div>
+
+  <div id="emi" class="step-card">
+    <div class="step-num">Calculator 1</div>
+    <div class="step-title">Home Loan EMI Calculator</div>
+    <div class="step-body">
+      Open the main EMICalc page. Enter these three values:
+      <div class="example-box">
+        <strong>Example — typical home loan in Bengaluru</strong>
+        <div style="margin-bottom:8px;">
+          <div>• Loan Amount: <strong>₹60,00,000</strong> (60 lakhs)</div>
+          <div>• Annual Interest Rate: <strong>8.75%</strong></div>
+          <div>• Tenure: <strong>20 years</strong></div>
+        </div>
+      </div>
+      <div class="result-box">
+        <div class="result-row"><span class="r-label">Monthly EMI</span><span class="r-val">₹52,859</span></div>
+        <div class="result-row"><span class="r-label">Total Payment (20 years)</span><span class="r-val">₹1,26,86,160</span></div>
+        <div class="result-row"><span class="r-label">Total Interest Paid</span><span class="r-val">₹66,86,160</span></div>
+        <div class="result-row"><span class="r-label">Interest-to-Principal Ratio</span><span class="r-val">You pay ₹1.11 interest for every ₹1 borrowed</span></div>
+      </div>
+      <div class="tip-box">💡 The chart below the result shows how your EMI splits between principal and interest each year. In year 1, about 78% of each EMI is interest. By year 15, that flips — 68% goes to principal.</div>
+    </div>
+  </div>
+
+  <div id="prepayment" class="step-card">
+    <div class="step-num">Calculator 2</div>
+    <div class="step-title">Prepayment Calculator</div>
+    <div class="step-body">
+      Use this after you've taken a loan and want to see how a lump-sum payment affects your loan. Go to <strong>Prepayment</strong> from the nav.
+      <div class="example-box">
+        <strong>Example — 5 years into a 20-year loan, making a prepayment</strong>
+        <div style="margin-bottom:8px;">
+          <div>• Outstanding Principal (after 5 years): <strong>₹54,20,000</strong></div>
+          <div>• Current Interest Rate: <strong>8.75%</strong></div>
+          <div>• Remaining Tenure: <strong>15 years</strong></div>
+          <div>• Prepayment Amount: <strong>₹5,00,000</strong></div>
+          <div>• Preference: <strong>Reduce Tenure</strong></div>
+        </div>
+      </div>
+      <div class="savings-box">
+        <strong>Result</strong>
+        <div>• New tenure after prepayment: <strong>12 years 4 months</strong> (saves 2 years 8 months)</div>
+        <div>• Interest saved: <strong>₹9,43,211</strong></div>
+        <div>• EMI stays the same: ₹52,859/month</div>
+      </div>
+      <div class="tip-box">💡 <strong>Reduce Tenure vs Reduce EMI:</strong> Reducing tenure (same EMI, shorter loan) almost always saves more money than reducing EMI (same tenure, lower monthly payment). Choose "Reduce EMI" only if your monthly cash flow is tight.</div>
+    </div>
+  </div>
+
+  <div id="compare" class="step-card">
+    <div class="step-num">Calculator 3</div>
+    <div class="step-title">Compare Loans from Two Banks</div>
+    <div class="step-body">
+      Go to <strong>Compare</strong>. Enter loan details for two different banks side by side.
+      <div class="example-box">
+        <strong>Example — SBI vs HDFC for ₹50 lakh home loan</strong>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
+          <div>
+            <div style="font-weight:700; color:#0369a1; margin-bottom:4px;">Bank A: SBI</div>
+            <div>Amount: ₹50,00,000</div>
+            <div>Rate: 8.50%</div>
+            <div>Tenure: 20 years</div>
+          </div>
+          <div>
+            <div style="font-weight:700; color:#0369a1; margin-bottom:4px;">Bank B: HDFC</div>
+            <div>Amount: ₹50,00,000</div>
+            <div>Rate: 8.75%</div>
+            <div>Tenure: 20 years</div>
+          </div>
+        </div>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid #bae6fd;">
+          <div>SBI monthly EMI: <strong>₹43,391</strong> · Total interest: <strong>₹54,13,800</strong></div>
+          <div>HDFC monthly EMI: <strong>₹44,082</strong> · Total interest: <strong>₹55,79,680</strong></div>
+          <div style="color:#166534; font-weight:700; margin-top:4px;">SBI saves ₹1,65,880 over 20 years — just from 0.25% lower rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Try EMICalc now</h2>
+    <p>Free · No signup · Instant results</p>
+    <a href="../" class="cta-btn">Open EMICalc →</a>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>What is EMI?</summary><p>EMI (Equated Monthly Instalment) is the fixed monthly payment for a loan. It includes principal repayment and interest. EMI = [P × R × (1+R)^N] / [(1+R)^N – 1], where P = principal, R = monthly interest rate, N = tenure in months.</p></details>
+  <details><summary>When is the best time to make a prepayment?</summary><p>As early as possible. In the first few years of a loan, almost all of your EMI goes toward interest. A prepayment at year 3 saves much more than the same prepayment at year 15. Banks typically allow one free prepayment per year on floating rate loans.</p></details>
+  <details><summary>Does reducing tenure vs reducing EMI matter for tax benefits?</summary><p>Your Section 80C deduction (up to ₹1.5L on principal) and Section 24B deduction (up to ₹2L on interest) both remain the same regardless of whether you reduce tenure or EMI. The tax benefit calculation depends on what you actually pay that year — the Tax Benefit tab in EMICalc shows the breakdown.</p></details>
+
+  <div style="margin-top:28px; font-size:12px; color:#0ea5e9;">
+    Also try: <a href="https://nxtcraft.github.io/tradecalc/" style="color:#0ea5e9;">TradeCalc — Stock Trading Calculator</a> ·
+    <a href="https://nxtcraft.github.io/" style="color:#0ea5e9;">All NxtCraft Tools</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 EMICalc · <a href="https://nxtcraft.github.io/" style="color:#0ea5e9;">NxtCraft Tools</a></footer>
+</body>
+</html>
