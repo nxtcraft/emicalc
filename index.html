@@ -5,6 +5,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R9EW10BJGW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-R9EW10BJGW");</script>
 <meta charset="UTF-8">
+<link rel="manifest" href="/emicalc/manifest.json">
+<meta name="theme-color" content="#7c3aed">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMICalc – Free EMI Calculator for Home, Car & Personal Loan</title>
 <meta name="description" content="Free EMI calculator for home loan, car loan and personal loan. Calculate monthly EMI, total interest, and view full amortization schedule. No signup needed.">
@@ -188,5 +191,6 @@
   <a href="https://nxtcraft.github.io/shopbook/">ShopBook</a> ·
   <a href="https://nxtcraft.github.io/">All Tools →</a>
 </footer>
+<script>if("serviceWorker"in navigator)navigator.serviceWorker.register("/emicalc/sw.js");</script>
 </body>
 </html>
