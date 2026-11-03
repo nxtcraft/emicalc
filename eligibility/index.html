@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9EW10BJGW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R9EW10BJGW');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Eligibility Calculator – How Much Loan Can I Get? | EMICalc</title>
+<meta name="description" content="Free loan eligibility calculator India. Enter your monthly income and existing EMIs to find the maximum home loan, car loan or personal loan amount you qualify for.">
+<meta name="keywords" content="loan eligibility calculator india, home loan eligibility calculator, how much loan can i get, loan eligibility based on salary, bank loan eligibility 2026, salary based loan calculator">
+<link rel="canonical" href="https://nxtcraft.github.io/emicalc/eligibility/">
+<meta property="og:title" content="Loan Eligibility Calculator – EMICalc">
+<meta property="og:description" content="Calculate maximum loan amount based on your salary and existing EMIs. Supports home, car and personal loans.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nxtcraft.github.io/emicalc/eligibility/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Loan Eligibility Calculator","url":"https://nxtcraft.github.io/emicalc/eligibility/","description":"Calculate maximum loan eligibility based on salary and existing EMIs.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is loan eligibility calculated?","acceptedAnswer":{"@type":"Answer","text":"Banks use FOIR (Fixed Obligation to Income Ratio) to determine loan eligibility. Typically, total EMIs (including new loan) cannot exceed 40–50% of gross monthly income. Maximum eligible loan = max allowed EMI × ((1+r)^n – 1) / (r × (1+r)^n)."}},{"@type":"Question","name":"What FOIR do banks use?","acceptedAnswer":{"@type":"Answer","text":"PSU banks (SBI, PNB, BOB) use 40–50% FOIR. Private banks (HDFC, ICICI, Axis) use 40–55% FOIR. For high-income applicants above ₹1 lakh/month, some banks allow up to 60%."}},{"@type":"Question","name":"How can I increase my loan eligibility?","acceptedAnswer":{"@type":"Answer","text":"Close existing loans/EMIs to reduce FOIR, increase tenure (reduces per-month EMI burden), apply with a co-applicant (spouse/parent) to combine income, improve CIBIL score above 750."}}]}</script>
+<style>
+.elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:600px){.elig-grid{grid-template-columns:1fr}}
+.result-box{background:linear-gradient(135deg,#1e1b4b,#2e1065);color:#fff;border-radius:14px;padding:24px;margin-bottom:20px;text-align:center}
+.result-main{font-size:2rem;font-weight:900;letter-spacing:-.02em;margin:8px 0}
+.result-label{font-size:13px;opacity:.7;margin-bottom:4px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:500px){.result-grid{grid-template-columns:1fr 1fr}}
+.result-cell{background:rgba(255,255,255,.1);border-radius:10px;padding:10px;text-align:center}
+.result-cell .val{font-size:1.1rem;font-weight:800}
+.result-cell .lbl{font-size:11px;opacity:.7;margin-top:2px}
+.bank-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.bank-table th{background:#ede9fe;color:#1e1b4b;padding:8px 10px;text-align:left;font-weight:700}
+.bank-table td{padding:7px 10px;border-bottom:1px solid #ede9fe}
+.bank-table tr:hover td{background:#f5f3ff}
+.foir-bar{height:10px;border-radius:5px;background:#e9d5ff;margin:6px 0;overflow:hidden}
+.foir-fill{height:100%;border-radius:5px;transition:width .4s}
+.tabs-local{display:flex;gap:0;border-bottom:2px solid #ede9fe;margin-bottom:20px}
+.tloc{padding:10px 18px;font-size:13px;font-weight:600;color:#6b7280;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tloc.active,.tloc:hover{color:#7c3aed;border-bottom-color:#7c3aed}
+</style>
+</head>
+<body>
+<div class="site-header">
+  <div class="site-header-top">
+    <a href="../" style="text-decoration:none;color:white;"><div class="logo">EMI<span>Calc</span></div></a>
+    <div style="font-size:13px;opacity:.8">Loan Eligibility Calculator</div>
+  </div>
+  <nav class="header-nav">
+    <a href="../">🏠 EMI Home</a>
+    <a href="../home-loan/">🏠 Home Loan</a>
+    <a href="../car-loan/">🚗 Car Loan</a>
+    <a href="../personal-loan/">💳 Personal Loan</a>
+    <a href="../compare/">⚖️ Compare</a>
+    <a href="../prepayment/">💰 Prepayment</a>
+    <a href="" class="active">✅ Eligibility</a>
+  </nav>
+</div>
+
+<div class="container">
+  <div style="text-align:center;padding:28px 0 20px">
+    <h1 style="font-size:22px;font-weight:800;margin-bottom:6px">Loan Eligibility Calculator</h1>
+    <p style="font-size:14px;color:#3730a3;max-width:520px;margin:0 auto">Find the maximum loan amount you qualify for based on your salary and existing EMIs — using the same FOIR method banks use.</p>
+  </div>
+
+  <div class="tabs-local">
+    <div class="tloc active" onclick="setLoanType('home',this)">🏠 Home Loan</div>
+    <div class="tloc" onclick="setLoanType('car',this)">🚗 Car Loan</div>
+    <div class="tloc" onclick="setLoanType('personal',this)">💳 Personal Loan</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div>
+      <div class="card">
+        <div class="card-title">Your Income</div>
+        <div class="elig-grid">
+          <div class="form-group">
+            <label class="form-label">Monthly Gross Income (₹)</label>
+            <input class="form-input" type="number" id="income" value="80000" min="0" oninput="calc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Other Monthly EMIs (₹)</label>
+            <input class="form-input" type="number" id="existing" value="0" min="0" oninput="calc()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">FOIR (Bank's allowed EMI % of income)</label>
+          <div style="display:flex;align-items:center;gap:12px">
+            <input type="range" id="foir" min="30" max="65" value="50" oninput="document.getElementById('foirVal').textContent=this.value+'%';calc()" style="flex:1">
+            <span id="foirVal" style="font-weight:700;color:#7c3aed;min-width:36px">50%</span>
+          </div>
+          <div style="font-size:11px;color:#6b7280;margin-top:4px">PSU banks: 40–50% · Private banks: 40–55% · High income: up to 60%</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-title">Loan Parameters</div>
+        <div class="elig-grid">
+          <div class="form-group">
+            <label class="form-label">Interest Rate (% p.a.)</label>
+            <input class="form-input" type="number" id="rate" value="8.5" step="0.1" min="1" max="36" oninput="calc()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tenure (years)</label>
+            <input class="form-input" type="number" id="tenure" value="20" min="1" max="30" oninput="calc()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result-box" id="resultBox">
+        <div class="result-label">Maximum Eligible Loan Amount</div>
+        <div class="result-main" id="maxLoan">—</div>
+        <div style="font-size:12px;opacity:.65" id="maxEmiLine">Based on max allowed EMI of ₹—</div>
+        <div class="result-grid">
+          <div class="result-cell">
+            <div class="val" id="rMaxEmi">—</div>
+            <div class="lbl">Max EMI Allowed</div>
+          </div>
+          <div class="result-cell">
+            <div class="val" id="rFoirUsed">—</div>
+            <div class="lbl">FOIR Used</div>
+          </div>
+          <div class="result-cell">
+            <div class="val" id="rAvailEmi">—</div>
+            <div class="lbl">Available EMI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">FOIR Breakdown</div>
+        <div style="font-size:13px;margin-bottom:4px">Existing EMIs</div>
+        <div class="foir-bar"><div class="foir-fill" id="existBar" style="background:#f59e0b"></div></div>
+        <div style="font-size:13px;margin:8px 0 4px">New Loan EMI</div>
+        <div class="foir-bar"><div class="foir-fill" id="newBar" style="background:#7c3aed"></div></div>
+        <div style="font-size:13px;margin:8px 0 4px">Remaining Income</div>
+        <div class="foir-bar"><div class="foir-fill" id="remBar" style="background:#10b981"></div></div>
+        <div style="font-size:11px;color:#6b7280;margin-top:6px" id="foirNote"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <div class="card-title">Bank-wise Estimated Eligibility</div>
+    <table class="bank-table">
+      <thead>
+        <tr><th>Bank / Lender</th><th>Typical Rate</th><th>FOIR</th><th>Est. Max Loan</th><th>EMI</th></tr>
+      </thead>
+      <tbody id="bankTable"></tbody>
+    </table>
+    <p style="font-size:11px;color:#9ca3af;margin-top:8px">* Indicative only. Actual eligibility depends on credit score, employment type, age, and bank policies.</p>
+  </div>
+
+  <div class="seo-section" style="margin-top:32px">
+    <h2>How Loan Eligibility is Calculated</h2>
+    <p>Banks use the <strong>FOIR (Fixed Obligation to Income Ratio)</strong> method. It ensures your total monthly EMI obligations (existing + new loan) stay within an affordable percentage of your gross income.</p>
+    <h3>Formula</h3>
+    <p><strong>Max Allowed EMI</strong> = Gross Income × FOIR% − Existing EMIs</p>
+    <p style="margin-top:6px"><strong>Max Loan</strong> = Max EMI × ((1+r)ⁿ − 1) / (r × (1+r)ⁿ)</p>
+    <h3>Tips to Increase Eligibility</h3>
+    <ul>
+      <li>Close existing loans to reduce FOIR usage</li>
+      <li>Apply with a co-applicant (spouse/parent) to combine income</li>
+      <li>Maintain CIBIL score above 750 for best rates and higher FOIR allowance</li>
+      <li>Opt for longer tenure — reduces monthly EMI requirement, increases eligible amount</li>
+      <li>Choose a PSU bank if income is moderate — they often have more flexible FOIR norms</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const BANKS = [
+  { name:'SBI', rate:8.5, foir:50 },
+  { name:'HDFC Bank', rate:8.75, foir:50 },
+  { name:'ICICI Bank', rate:8.75, foir:55 },
+  { name:'Axis Bank', rate:8.85, foir:55 },
+  { name:'Bank of Baroda', rate:8.4, foir:50 },
+  { name:'LIC Housing Finance', rate:8.65, foir:50 },
+];
+
+let loanType = 'home';
+const DEFAULT_RATES = { home:8.5, car:9.0, personal:12.0 };
+const DEFAULT_TENURE = { home:20, car:5, personal:3 };
+
+function setLoanType(t, el) {
+  loanType = t;
+  document.querySelectorAll('.tloc').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('rate').value = DEFAULT_RATES[t];
+  document.getElementById('tenure').value = DEFAULT_TENURE[t];
+  calc();
+}
+
+function loanAmount(emi, rAnnual, yrs) {
+  if (!emi || emi <= 0) return 0;
+  const r = rAnnual / 12 / 100;
+  const n = yrs * 12;
+  if (r === 0) return emi * n;
+  return emi * ((Math.pow(1+r,n)-1) / (r*Math.pow(1+r,n)));
+}
+
+function emiFromAmount(p, rAnnual, yrs) {
+  const r = rAnnual / 12 / 100;
+  const n = yrs * 12;
+  if (r === 0) return p / n;
+  return p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+}
+
+function fmt(n) {
+  if (n >= 1e7) return '₹' + (n/1e7).toFixed(2) + ' Cr';
+  if (n >= 1e5) return '₹' + (n/1e5).toFixed(2) + ' L';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function calc() {
+  const income = parseFloat(document.getElementById('income').value) || 0;
+  const existing = parseFloat(document.getElementById('existing').value) || 0;
+  const foir = parseFloat(document.getElementById('foir').value) / 100;
+  const rate = parseFloat(document.getElementById('rate').value) || 0;
+  const tenure = parseInt(document.getElementById('tenure').value) || 1;
+
+  const maxAllowedEmi = income * foir;
+  const availableEmi = Math.max(0, maxAllowedEmi - existing);
+  const maxLoan = Math.round(loanAmount(availableEmi, rate, tenure));
+
+  document.getElementById('maxLoan').textContent = fmt(maxLoan);
+  document.getElementById('maxEmiLine').textContent = `Based on max allowed EMI of ${fmt(availableEmi)}`;
+  document.getElementById('rMaxEmi').textContent = fmt(maxAllowedEmi);
+  document.getElementById('rFoirUsed').textContent = (existing/income*100).toFixed(1)+'%';
+  document.getElementById('rAvailEmi').textContent = fmt(availableEmi);
+
+  // FOIR bars
+  const existPct = Math.min(100, existing/income*100);
+  const newPct = Math.min(100, availableEmi/income*100);
+  const remPct = Math.max(0, 100 - existPct - newPct);
+  document.getElementById('existBar').style.width = existPct+'%';
+  document.getElementById('newBar').style.width = newPct+'%';
+  document.getElementById('remBar').style.width = remPct+'%';
+  document.getElementById('foirNote').textContent =
+    `Existing: ${existPct.toFixed(1)}%  |  New loan: ${newPct.toFixed(1)}%  |  Net take-home after EMIs: ${remPct.toFixed(1)}%`;
+
+  // Bank table
+  const tbody = document.getElementById('bankTable');
+  tbody.innerHTML = BANKS.map(b => {
+    const bMaxEmi = Math.max(0, income * b.foir/100 - existing);
+    const bLoan = Math.round(loanAmount(bMaxEmi, b.rate, tenure));
+    const bEmi = Math.round(emiFromAmount(bLoan, b.rate, tenure));
+    return `<tr>
+      <td><b>${b.name}</b></td>
+      <td>${b.rate}%</td>
+      <td>${b.foir}%</td>
+      <td><b>${fmt(bLoan)}</b></td>
+      <td>${fmt(bEmi)}/mo</td>
+    </tr>`;
+  }).join('');
+}
+
+calc();
+</script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('/emicalc/sw.js');</script>
+</body>
+</html>
