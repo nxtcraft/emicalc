@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9EW10BJGW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R9EW10BJGW');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Balance Transfer Calculator – Home Loan Balance Transfer Savings India</title>
+<meta name="description" content="Free home loan balance transfer calculator. Find out how much you save by switching to a lower interest rate. Compare old vs new EMI, total savings and break-even point.">
+<link rel="canonical" href="https://nxtcraft.github.io/emicalc/balance-transfer/">
+<meta property="og:title" content="Loan Balance Transfer Calculator — Save on Home Loan">
+<meta property="og:description" content="Calculate EMI savings from balance transfer. Compare old vs new lender, see break-even point and net savings after charges.">
+<meta property="og:type" content="website">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#f9fafb;color:#111827;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+nav.header-nav{background:#1d4ed8;padding:.6rem 1.2rem;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+nav.header-nav a{color:rgba(255,255,255,.75);font-size:.82rem;font-weight:600;text-decoration:none;padding:.25rem .5rem;border-radius:5px}
+nav.header-nav a:hover,nav.header-nav a.active{color:#fff;background:rgba(255,255,255,.18)}
+main{max-width:900px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.5rem;font-weight:800;margin-bottom:.25rem}
+.sub{color:#6b7280;font-size:.9rem;margin-bottom:1.5rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:620px){.grid2{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem}
+.card-title{font-size:.9rem;font-weight:700;color:#1d4ed8;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+label{display:block;font-size:.8rem;font-weight:600;color:#374151;margin:.5rem 0 .2rem}
+input,select{width:100%;background:#f9fafb;border:1.5px solid #e5e7eb;color:#111827;border-radius:8px;padding:.45rem .7rem;font-size:.9rem;outline:none}
+input:focus,select:focus{border-color:#1d4ed8}
+.result-hero{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#fff;border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.hero-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:.75rem}
+.hero-stat{background:rgba(255,255,255,.12);border-radius:9px;padding:.75rem;text-align:center}
+.hero-stat .v{font-size:1.1rem;font-weight:800}
+.hero-stat .l{font-size:.7rem;opacity:.7;margin-top:.15rem}
+.savings-highlight{text-align:center;margin-bottom:.5rem}
+.savings-num{font-size:2.2rem;font-weight:900;line-height:1}
+.savings-label{font-size:.85rem;opacity:.7;margin-top:.2rem}
+.comparison-table{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:.75rem}
+.comparison-table th{background:#eff6ff;color:#1d4ed8;padding:.5rem .75rem;text-align:left;font-weight:700}
+.comparison-table td{padding:.5rem .75rem;border-top:1px solid #f3f4f6}
+.comparison-table .better{color:#15803d;font-weight:700}
+.comparison-table .worse{color:#ef4444}
+.break-even-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:1rem;font-size:.85rem;margin-top:.75rem;color:#14532d}
+.break-even-box strong{color:#15803d}
+.warning-box{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:.75rem;font-size:.82rem;color:#78350f;margin-top:.75rem}
+footer{text-align:center;padding:1.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #e5e7eb;margin-top:2rem}
+</style>
+</head>
+<body>
+<nav class="header-nav">
+  <a href="../">🏠 Home</a>
+  <a href="../home-loan/">🏠 Home Loan</a>
+  <a href="../car-loan/">🚗 Car Loan</a>
+  <a href="../personal-loan/">💳 Personal Loan</a>
+  <a href="../compare/">⚖️ Compare</a>
+  <a href="../prepayment/">💰 Prepayment</a>
+  <a href="../eligibility/">✅ Eligibility</a>
+  <a href="../balance-transfer/" class="active">🔄 Balance Transfer</a>
+</nav>
+<main>
+  <h1>Loan Balance Transfer Calculator</h1>
+  <p class="sub">Should you switch to a lower rate? Find out your exact EMI savings and break-even point after transfer charges.</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">🏦 Current Loan (Old Bank)</div>
+      <label>Outstanding Principal (₹)</label>
+      <input type="number" id="principal" value="3000000" oninput="calc()">
+      <label>Current Interest Rate (%)</label>
+      <input type="number" id="old-rate" value="9.5" step="0.1" oninput="calc()">
+      <label>Remaining Tenure (months)</label>
+      <input type="number" id="tenure" value="240" oninput="calc()">
+      <label>Processing Fee Paid (₹, if any)</label>
+      <input type="number" id="old-fee" value="0" oninput="calc()">
+    </div>
+    <div class="card">
+      <div class="card-title">🆕 New Lender Offer</div>
+      <label>New Interest Rate (%)</label>
+      <input type="number" id="new-rate" value="8.5" step="0.1" oninput="calc()">
+      <label>Processing / Transfer Fee (₹)</label>
+      <input type="number" id="transfer-fee" value="15000" oninput="calc()">
+      <label>Legal / Misc Charges (₹)</label>
+      <input type="number" id="misc-fee" value="5000" oninput="calc()">
+      <label>Foreclosure Penalty (₹)</label>
+      <input type="number" id="penalty" value="0" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="result-hero" id="result-hero" style="margin-top:1rem">
+    <div class="savings-highlight">
+      <div class="savings-num" id="net-savings">₹—</div>
+      <div class="savings-label">Net Lifetime Savings after all transfer costs</div>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-stat"><div class="v" id="old-emi">—</div><div class="l">Old EMI</div></div>
+      <div class="hero-stat"><div class="v" id="new-emi">—</div><div class="l">New EMI</div></div>
+      <div class="hero-stat"><div class="v" id="emi-saving">—</div><div class="l">Monthly Saving</div></div>
+      <div class="hero-stat"><div class="v" id="breakeven">—</div><div class="l">Break-even (months)</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="card-title">📊 Comparison</div>
+    <table class="comparison-table">
+      <thead><tr><th>Metric</th><th>Old Loan</th><th>New Loan</th><th>Saving</th></tr></thead>
+      <tbody id="comp-body"></tbody>
+    </table>
+    <div class="break-even-box" id="break-even-box"></div>
+    <div class="warning-box">⚠️ <strong>Note:</strong> This calculator assumes same remaining tenure and no prepayments. Balance transfer is most beneficial early in the loan (when interest component is high). Check your existing loan's foreclosure clause before proceeding — floating rate loans typically have nil penalty, fixed rate may charge 2–4%.</div>
+  </div>
+</main>
+<footer><p>Balance Transfer Calculator by <a href="https://nxtcraft.github.io/emicalc/" style="color:#1d4ed8">NxtCraft EMICalc</a></p></footer>
+
+<script>
+function fmt(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+
+function emi(p, rAnnual, nMonths) {
+  const r = rAnnual / 12 / 100;
+  if (r === 0) return p / nMonths;
+  return p * r * Math.pow(1+r, nMonths) / (Math.pow(1+r, nMonths) - 1);
+}
+
+function totalInterest(p, rAnnual, n) {
+  return emi(p, rAnnual, n) * n - p;
+}
+
+function calc() {
+  const P = +document.getElementById('principal').value || 0;
+  const oldR = +document.getElementById('old-rate').value || 0;
+  const N = +document.getElementById('tenure').value || 0;
+  const newR = +document.getElementById('new-rate').value || 0;
+  const totalCost = (+document.getElementById('transfer-fee').value||0) + (+document.getElementById('misc-fee').value||0) + (+document.getElementById('penalty').value||0);
+
+  if (!P || !oldR || !N) return;
+
+  const oldEMI = emi(P, oldR, N);
+  const newEMI = emi(P, newR, N);
+  const emiDiff = oldEMI - newEMI;
+  const oldTotalInt = totalInterest(P, oldR, N);
+  const newTotalInt = totalInterest(P, newR, N);
+  const grossSaving = oldTotalInt - newTotalInt;
+  const netSaving = grossSaving - totalCost;
+  const breakEven = emiDiff > 0 ? Math.ceil(totalCost / emiDiff) : Infinity;
+
+  document.getElementById('old-emi').textContent = fmt(oldEMI);
+  document.getElementById('new-emi').textContent = fmt(newEMI);
+  document.getElementById('emi-saving').textContent = emiDiff > 0 ? fmt(emiDiff) : '—';
+  document.getElementById('breakeven').textContent = isFinite(breakEven) ? breakEven + ' mo' : 'N/A';
+  document.getElementById('net-savings').textContent = fmt(Math.max(0, netSaving));
+
+  document.getElementById('comp-body').innerHTML = [
+    ['EMI', fmt(oldEMI), fmt(newEMI), `<span class="${emiDiff>0?'better':'worse'}">${emiDiff>0?'-'+fmt(emiDiff):'+'+fmt(-emiDiff)}</span>`],
+    ['Total Interest', fmt(oldTotalInt), fmt(newTotalInt), `<span class="${grossSaving>0?'better':'worse'}">${fmt(Math.abs(grossSaving))}</span>`],
+    ['Transfer Cost', '—', fmt(totalCost), ''],
+    ['Net Saving', '—', '—', `<span class="${netSaving>0?'better':'worse'}">${fmt(netSaving)}</span>`],
+  ].map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
+
+  const beBox = document.getElementById('break-even-box');
+  if (emiDiff <= 0) {
+    beBox.innerHTML = '⛔ The new rate does not save EMI. Balance transfer is <strong>not recommended</strong>.';
+  } else if (!isFinite(breakEven)) {
+    beBox.innerHTML = '⚠️ Cannot determine break-even point.';
+  } else if (breakEven > N) {
+    beBox.innerHTML = `⚠️ Break-even is at <strong>month ${breakEven}</strong> — longer than remaining tenure. Transfer may not be worthwhile.`;
+  } else {
+    beBox.innerHTML = `✅ Break-even at <strong>month ${breakEven}</strong>. After that, every month you save <strong>${fmt(emiDiff)}</strong>. <strong>Balance transfer is recommended</strong> if you plan to hold the loan beyond ${breakEven} months.`;
+  }
+}
+
+calc();
+</script>
+</body>
+</html>
