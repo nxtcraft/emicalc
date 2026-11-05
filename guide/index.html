@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics 4 — replace G-R9EW10BJGW with your Measurement ID -->
+<!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R9EW10BJGW"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-R9EW10BJGW");</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Calculate EMI & Prepayment Savings — Step by Step Guide | EMICalc</title>
-<meta name="description" content="Step-by-step guide to calculating home loan EMI, total interest, prepayment savings, and comparing loans. Filled examples for every calculator.">
-<meta name="keywords" content="how to calculate home loan EMI, EMI calculator kaise use kare, prepayment calculator how to use, home loan comparison calculator, loan EMI calculation example, prepayment savings calculator guide">
+<title>Home Loan EMI Calculator Guide – How to Calculate EMI in India (With Formula & Examples)</title>
+<meta name="description" content="Complete guide to calculating home loan EMI in India. Learn the EMI formula, worked examples (₹30L@8.5%@20yr), amortisation schedule, prepayment savings, and how to reduce your EMI.">
+<meta name="keywords" content="EMI calculator India, how to calculate EMI, home loan EMI formula, EMI calculation example, amortisation schedule India, reduce EMI, prepayment savings">
 <link rel="canonical" href="https://nxtcraft.github.io/emicalc/guide/">
-<meta property="og:title" content="How to Calculate EMI & Prepayment Savings — Step by Step Guide">
+<meta property="og:title" content="Home Loan EMI Calculator Guide – Formula, Examples & Tips | EMICalc India">
+<meta property="og:description" content="Learn how to calculate EMI in India with formula, worked examples, amortisation schedule, and tips to reduce your home loan cost.">
 <meta property="og:type" content="article">
+<meta property="og:url" content="https://nxtcraft.github.io/emicalc/guide/">
+<meta property="og:image" content="https://nxtcraft.github.io/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Home Loan EMI Calculator Guide – India 2026">
+<meta name="twitter:description" content="EMI formula, worked examples, amortisation schedule and ways to reduce your home loan cost.">
+<meta name="twitter:site" content="@nxtcraft">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "How to Calculate Home Loan EMI and Prepayment Savings",
-  "description": "Step-by-step guide to using EMICalc for loan EMI, prepayment, and loan comparison calculations",
+  "name": "How to Calculate Home Loan EMI in India",
+  "description": "Step-by-step guide to calculating EMI using the standard formula, entering values into the calculator, and reading the amortisation schedule.",
   "totalTime": "PT3M",
   "step": [
-    { "@type": "HowToStep", "name": "Enter loan amount", "text": "Enter the total loan amount in rupees. For a home loan, this is the sanctioned amount, not the property value." },
-    { "@type": "HowToStep", "name": "Enter interest rate", "text": "Enter the annual interest rate as a number. For example, 8.5 for 8.5% per annum." },
-    { "@type": "HowToStep", "name": "Enter tenure", "text": "Enter the loan tenure in years. 20 years is common for home loans." },
-    { "@type": "HowToStep", "name": "Read the result", "text": "The calculator shows monthly EMI, total payment, and total interest. The chart shows how much goes to principal vs interest over time." },
-    { "@type": "HowToStep", "name": "Calculate prepayment savings", "text": "Go to the Prepayment tab. Enter your outstanding loan details and a one-time prepayment amount to see how much interest you save." }
+    { "@type": "HowToStep", "name": "Enter the loan amount", "text": "Enter the total loan amount sanctioned by the bank in rupees. For a home loan this is typically 75–90% of the property value. Example: ₹30,00,000." },
+    { "@type": "HowToStep", "name": "Enter the annual interest rate", "text": "Enter the rate as a number — for example, 8.5 for 8.5% per annum. For floating rate loans, use your current rate. SBI home loan rates in 2024-25 range from 8.5% to 9.65%." },
+    { "@type": "HowToStep", "name": "Enter the loan tenure", "text": "Enter the repayment period in years. Home loans typically run 10–30 years. A longer tenure reduces your EMI but increases total interest paid." },
+    { "@type": "HowToStep", "name": "Read the EMI and total interest", "text": "The calculator instantly shows your monthly EMI, total amount payable, and total interest cost. For ₹30L at 8.5% over 20 years, the EMI is ₹26,035 and total interest is ₹32.48 lakh." },
+    { "@type": "HowToStep", "name": "Check the amortisation schedule", "text": "Scroll to the amortisation table to see how each month's EMI splits between principal and interest. In month 1, most goes to interest. By year 15 onwards, most goes to principal repayment." }
   ]
 }
 </script>
@@ -37,24 +43,34 @@
     {
       "@type": "Question",
       "name": "What is EMI?",
-      "acceptedAnswer": { "@type": "Answer", "text": "EMI stands for Equated Monthly Instalment — the fixed amount you pay every month for a loan. It includes both the principal repayment and the interest component. Early in the loan, most of your EMI goes toward interest; as the loan matures, more goes toward principal." }
+      "acceptedAnswer": { "@type": "Answer", "text": "EMI stands for Equated Monthly Instalment — the fixed amount you pay to your bank every month to repay a loan. It includes two components: principal repayment and interest. The EMI amount stays constant throughout the loan tenure (for fixed-rate loans), but the ratio of principal to interest changes each month — early EMIs are mostly interest; later EMIs are mostly principal." }
     },
     {
       "@type": "Question",
-      "name": "How much does a prepayment of ₹5 lakh save on a home loan?",
-      "acceptedAnswer": { "@type": "Answer", "text": "It depends on when in the loan tenure you make the prepayment. On a ₹50 lakh loan at 8.5% for 20 years, a prepayment of ₹5 lakh in year 5 typically saves ₹8–12 lakh in total interest and reduces tenure by 2–3 years. The earlier in the tenure you prepay, the larger the savings — because interest is charged on the outstanding principal." }
+      "name": "How is EMI calculated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EMI is calculated using the formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P = principal loan amount, r = monthly interest rate (annual rate ÷ 12 ÷ 100), and n = tenure in months. For example, a ₹30 lakh loan at 8.5% p.a. for 20 years: r = 8.5/12/100 = 0.007083, n = 240 months. EMI = 30,00,000 × 0.007083 × (1.007083)^240 / ((1.007083)^240 - 1) = ₹26,035." }
     },
     {
       "@type": "Question",
-      "name": "Should I reduce EMI or reduce tenure when making a prepayment?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Reducing tenure saves more money — you pay off the loan faster and accumulate less interest. Reducing EMI keeps the same tenure but lowers your monthly payment, which helps if your cash flow is tight. If you can afford the current EMI, choose 'Reduce Tenure' for maximum savings." }
+      "name": "Can I reduce my EMI after taking a loan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, in three ways: (1) Make a lump-sum prepayment and ask the bank to reduce EMI instead of tenure. (2) Refinance (balance transfer) to a lower rate lender. (3) Renegotiate your rate with your current bank, especially if you have a good repayment history. For floating rate home loans, your EMI automatically adjusts when RBI changes the repo rate." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I miss an EMI payment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Missing an EMI results in: (1) Late payment penalty (typically 1–2% of the EMI). (2) Negative impact on your CIBIL/credit score, which can affect future loan eligibility. (3) Penal interest on the overdue amount. If you miss 3 consecutive EMIs, the loan account is classified as a Non-Performing Asset (NPA). Contact your bank proactively if you anticipate difficulty — most banks offer EMI moratorium options." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is EMI tax deductible in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For home loans, yes. Under Section 24(b), interest paid up to ₹2 lakh per year on a self-occupied home is tax-deductible. Under Section 80C, the principal repayment component (up to ₹1.5 lakh per year) is deductible. These deductions are only available under the old tax regime — not under the new default regime." }
     }
   ]
 }
 </script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', -apple-system, sans-serif; background: #f0f9ff; color: #1a1a2e; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f9ff; color: #1a1a2e; line-height: 1.7; }
 .site-header { background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%); color: white; padding: 14px 24px; }
 .logo { font-size: 20px; font-weight: 800; }
 .logo a { color: white; text-decoration: none; }
@@ -62,32 +78,47 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: #f0f9ff; col
 .container { max-width: 820px; margin: 0 auto; padding: 32px 20px 60px; }
 .breadcrumb { font-size: 12px; color: #0ea5e9; margin-bottom: 20px; }
 .breadcrumb a { color: #0ea5e9; text-decoration: none; }
-h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
-.subtitle { font-size: 14px; color: #555; margin-bottom: 32px; line-height: 1.6; }
-.step-card { background: white; border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(3,105,161,.08); border-left: 4px solid #0ea5e9; }
-.step-num { font-size: 11px; font-weight: 700; color: #0ea5e9; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.step-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-.step-body { font-size: 14px; color: #333; line-height: 1.7; }
-.example-box { background: #e0f2fe; border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 13px; }
-.example-box strong { color: #0369a1; display: block; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+h1 { font-size: 26px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+.subtitle { font-size: 14px; color: #555; margin-bottom: 24px; line-height: 1.6; }
+.toc { background: #fff; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(3,105,161,.08); }
+.toc h3 { font-size: 14px; font-weight: 700; color: #0369a1; margin-bottom: 10px; }
+.toc ol { padding-left: 18px; }
+.toc li { font-size: 14px; margin-bottom: 5px; }
+.toc a { color: #0369a1; text-decoration: none; font-weight: 600; }
+.toc a:hover { text-decoration: underline; }
+h2 { font-size: 20px; font-weight: 800; margin: 36px 0 12px; border-left: 4px solid #0ea5e9; padding-left: 12px; color: #0f172a; }
+h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: #0369a1; }
+p { font-size: 15px; color: #374151; margin-bottom: 12px; }
+ul, ol { padding-left: 22px; margin-bottom: 14px; }
+li { font-size: 15px; color: #374151; margin-bottom: 6px; }
+.card { background: white; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(3,105,161,.08); }
+.example-box { background: #e0f2fe; border-radius: 10px; padding: 16px; margin: 14px 0; }
+.example-box strong { color: #0369a1; display: block; margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+.formula-box { background: #1e293b; color: #e2e8f0; border-radius: 10px; padding: 16px 20px; margin: 14px 0; font-family: monospace; font-size: 14px; line-height: 1.8; }
+.formula-box .label { color: #94a3b8; font-size: 12px; }
 .result-box { background: white; border: 2px solid #0ea5e9; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
-.result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0f9ff; font-size: 13px; }
+.result-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f9ff; font-size: 14px; }
 .result-row:last-child { border-bottom: none; font-weight: 700; color: #0369a1; }
 .r-label { color: #555; }
 .r-val { font-weight: 600; color: #1a1a2e; }
-.savings-box { background: #f0fdf4; border: 2px solid #86efac; border-radius: 10px; padding: 14px 16px; margin-top: 12px; font-size: 13px; }
-.savings-box strong { color: #166534; display: block; margin-bottom: 8px; }
-.tip-box { background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #92400e; line-height: 1.6; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 14px 0; }
+th { background: #0369a1; color: #fff; padding: 9px 12px; text-align: left; font-weight: 700; }
+td { padding: 8px 12px; border-bottom: 1px solid #e0f2fe; color: #374151; }
+tr:nth-child(even) td { background: #f0f9ff; }
+.highlight { background: #e0f2fe; border-left: 4px solid #0ea5e9; padding: 14px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; font-size: 14px; color: #1e3a5f; }
+.highlight strong { color: #0369a1; }
+.warning { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px; color: #92400e; }
+.tip-box { background: #fef9c3; border-left: 3px solid #f59e0b; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 13px; color: #92400e; line-height: 1.6; }
 .cta-box { background: linear-gradient(135deg,#0369a1,#0ea5e9); color: white; border-radius: 16px; padding: 28px 32px; text-align: center; margin: 36px 0; }
-.cta-box h2 { font-size: 20px; margin-bottom: 8px; }
-.cta-box p { font-size: 13px; opacity: .85; margin-bottom: 16px; }
+.cta-box h2 { font-size: 20px; margin-bottom: 8px; border: none; padding: 0; color: #fff; }
+.cta-box p { font-size: 13px; opacity: .85; margin-bottom: 16px; color: #fff; }
 .cta-btn { display: inline-block; background: white; color: #0369a1; padding: 12px 28px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; }
-h2 { font-size: 20px; font-weight: 700; margin: 36px 0 16px; }
 details { border: 1px solid #bae6fd; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
 details summary { padding: 13px 16px; cursor: pointer; font-weight: 600; font-size: 14px; }
-details p { padding: 0 16px 14px; font-size: 13px; color: #555; line-height: 1.7; }
-.nav-pills { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
-.nav-pill { background: #e0f2fe; color: #0369a1; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; }
+details p { padding: 0 16px 14px; font-size: 14px; color: #555; line-height: 1.7; }
+.related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.related-links a { padding: 6px 16px; border-radius: 20px; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 600; text-decoration: none; }
+.related-links a:hover { background: #0369a1; color: #fff; }
 footer { text-align: center; padding: 20px; font-size: 12px; color: #0ea5e9; border-top: 1px solid #bae6fd; margin-top: 40px; }
 </style>
 </head>
@@ -97,113 +128,202 @@ footer { text-align: center; padding: 20px; font-size: 12px; color: #0ea5e9; bor
 </div>
 
 <div class="container">
-  <div class="breadcrumb"><a href="../">EMICalc</a> › How to Use</div>
-  <h1>How to Calculate EMI & Prepayment Savings</h1>
-  <p class="subtitle">EMICalc has 5 calculators. This guide shows exactly how to use each one, with filled examples so you know what to expect.</p>
+  <div class="breadcrumb"><a href="https://nxtcraft.github.io/">NxtCraft</a> › <a href="../">EMICalc</a> › Guide</div>
+  <h1>Home Loan EMI Calculator Guide – How to Calculate EMI in India (With Formula &amp; Examples)</h1>
+  <p class="subtitle">Everything you need to know about EMI calculation in India — the formula, worked examples with ₹30 lakh home loan, amortisation schedule, how to reduce your EMI, and tax benefits.</p>
 
-  <div class="nav-pills">
-    <a href="#emi" class="nav-pill">🏠 EMI Calculator</a>
-    <a href="#prepayment" class="nav-pill">💰 Prepayment</a>
-    <a href="#compare" class="nav-pill">📊 Compare Loans</a>
-    <a href="#affordability" class="nav-pill">💡 Affordability</a>
-    <a href="#tax" class="nav-pill">🧾 Tax Benefit</a>
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <ol>
+      <li><a href="#what-is-emi">What is EMI?</a></li>
+      <li><a href="#formula">EMI Formula Explained (with Worked Example)</a></li>
+      <li><a href="#how-to-use">How to Use the EMI Calculator</a></li>
+      <li><a href="#comparison">Home vs Car vs Personal Loan — EMI Comparison</a></li>
+      <li><a href="#amortisation">What is an Amortisation Schedule?</a></li>
+      <li><a href="#reduce">How to Reduce Your EMI</a></li>
+      <li><a href="#tenure">Longer vs Shorter Tenure — Which Saves More?</a></li>
+      <li><a href="#tax">Tax Benefits on Home Loan EMI</a></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+    </ol>
   </div>
 
-  <div id="emi" class="step-card">
-    <div class="step-num">Calculator 1</div>
-    <div class="step-title">Home Loan EMI Calculator</div>
-    <div class="step-body">
-      Open the main EMICalc page. Enter these three values:
-      <div class="example-box">
-        <strong>Example — typical home loan in Bengaluru</strong>
-        <div style="margin-bottom:8px;">
-          <div>• Loan Amount: <strong>₹60,00,000</strong> (60 lakhs)</div>
-          <div>• Annual Interest Rate: <strong>8.75%</strong></div>
-          <div>• Tenure: <strong>20 years</strong></div>
-        </div>
-      </div>
-      <div class="result-box">
-        <div class="result-row"><span class="r-label">Monthly EMI</span><span class="r-val">₹52,859</span></div>
-        <div class="result-row"><span class="r-label">Total Payment (20 years)</span><span class="r-val">₹1,26,86,160</span></div>
-        <div class="result-row"><span class="r-label">Total Interest Paid</span><span class="r-val">₹66,86,160</span></div>
-        <div class="result-row"><span class="r-label">Interest-to-Principal Ratio</span><span class="r-val">You pay ₹1.11 interest for every ₹1 borrowed</span></div>
-      </div>
-      <div class="tip-box">💡 The chart below the result shows how your EMI splits between principal and interest each year. In year 1, about 78% of each EMI is interest. By year 15, that flips — 68% goes to principal.</div>
-    </div>
+  <div class="card" id="what-is-emi">
+    <h2>1. What is EMI?</h2>
+    <p>EMI stands for <strong>Equated Monthly Instalment</strong> — the fixed amount you pay your bank every month to repay a loan. It is "equated" because the amount stays the same every month throughout the loan tenure (for fixed-rate loans), making budgeting predictable.</p>
+    <p>Every EMI payment has two components:</p>
+    <ul>
+      <li><strong>Interest component</strong> — the cost of borrowing money, calculated on the outstanding principal</li>
+      <li><strong>Principal component</strong> — the portion that actually reduces your loan balance</li>
+    </ul>
+    <p>Here is the key insight most borrowers miss: <strong>the split between these two components changes every month</strong>. In the early years, most of your EMI goes toward interest. In the later years, most goes toward principal repayment. This is why prepayments made early in the loan tenure save far more money than the same prepayment made later.</p>
+    <div class="highlight"><strong>Example:</strong> On a ₹30 lakh home loan at 8.5% for 20 years, your EMI is ₹26,035. In Month 1, only ₹4,785 goes toward reducing your loan balance — the remaining ₹21,250 is pure interest. By Month 180 (year 15), ₹14,610 goes toward principal and only ₹11,425 to interest.</div>
   </div>
 
-  <div id="prepayment" class="step-card">
-    <div class="step-num">Calculator 2</div>
-    <div class="step-title">Prepayment Calculator</div>
-    <div class="step-body">
-      Use this after you've taken a loan and want to see how a lump-sum payment affects your loan. Go to <strong>Prepayment</strong> from the nav.
-      <div class="example-box">
-        <strong>Example — 5 years into a 20-year loan, making a prepayment</strong>
-        <div style="margin-bottom:8px;">
-          <div>• Outstanding Principal (after 5 years): <strong>₹54,20,000</strong></div>
-          <div>• Current Interest Rate: <strong>8.75%</strong></div>
-          <div>• Remaining Tenure: <strong>15 years</strong></div>
-          <div>• Prepayment Amount: <strong>₹5,00,000</strong></div>
-          <div>• Preference: <strong>Reduce Tenure</strong></div>
-        </div>
-      </div>
-      <div class="savings-box">
-        <strong>Result</strong>
-        <div>• New tenure after prepayment: <strong>12 years 4 months</strong> (saves 2 years 8 months)</div>
-        <div>• Interest saved: <strong>₹9,43,211</strong></div>
-        <div>• EMI stays the same: ₹52,859/month</div>
-      </div>
-      <div class="tip-box">💡 <strong>Reduce Tenure vs Reduce EMI:</strong> Reducing tenure (same EMI, shorter loan) almost always saves more money than reducing EMI (same tenure, lower monthly payment). Choose "Reduce EMI" only if your monthly cash flow is tight.</div>
+  <div class="card" id="formula">
+    <h2>2. EMI Formula Explained (With Worked Example)</h2>
+    <p>The standard EMI formula used by all Indian banks is:</p>
+    <div class="formula-box">
+      <div class="label">EMI Formula</div>
+      EMI = P × r × (1 + r)^n / ((1 + r)^n − 1)<br><br>
+      <div class="label">Where:</div>
+      P = Principal loan amount (₹)<br>
+      r = Monthly interest rate = Annual rate ÷ 12 ÷ 100<br>
+      n = Loan tenure in months
     </div>
+    <h3>Worked Example: ₹30 Lakh Home Loan at 8.5% for 20 Years</h3>
+    <p>Step 1 — Calculate monthly rate: r = 8.5 ÷ 12 ÷ 100 = 0.007083</p>
+    <p>Step 2 — Calculate tenure in months: n = 20 × 12 = 240</p>
+    <p>Step 3 — Calculate (1+r)^n: (1.007083)^240 = 5.5536</p>
+    <p>Step 4 — Apply formula:</p>
+    <div class="formula-box">
+      EMI = 30,00,000 × 0.007083 × 5.5536 / (5.5536 − 1)<br>
+          = 30,00,000 × 0.03934 / 4.5536<br>
+          = 1,18,020 / 4.5536<br>
+          = <strong>₹26,035</strong>
+    </div>
+    <div class="result-box">
+      <div class="result-row"><span class="r-label">Monthly EMI</span><span class="r-val">₹26,035</span></div>
+      <div class="result-row"><span class="r-label">Total Amount Paid (20 years)</span><span class="r-val">₹62,48,400</span></div>
+      <div class="result-row"><span class="r-label">Total Interest Paid</span><span class="r-val">₹32,48,400</span></div>
+      <div class="result-row"><span class="r-label">Interest-to-Principal Ratio</span><span class="r-val">₹1.08 interest per ₹1 borrowed</span></div>
+    </div>
+    <div class="tip-box">💡 You don't need to do this math manually. The EMICalc tool computes it instantly and shows you the full amortisation table month by month.</div>
   </div>
 
-  <div id="compare" class="step-card">
-    <div class="step-num">Calculator 3</div>
-    <div class="step-title">Compare Loans from Two Banks</div>
-    <div class="step-body">
-      Go to <strong>Compare</strong>. Enter loan details for two different banks side by side.
-      <div class="example-box">
-        <strong>Example — SBI vs HDFC for ₹50 lakh home loan</strong>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
-          <div>
-            <div style="font-weight:700; color:#0369a1; margin-bottom:4px;">Bank A: SBI</div>
-            <div>Amount: ₹50,00,000</div>
-            <div>Rate: 8.50%</div>
-            <div>Tenure: 20 years</div>
-          </div>
-          <div>
-            <div style="font-weight:700; color:#0369a1; margin-bottom:4px;">Bank B: HDFC</div>
-            <div>Amount: ₹50,00,000</div>
-            <div>Rate: 8.75%</div>
-            <div>Tenure: 20 years</div>
-          </div>
-        </div>
-        <div style="margin-top:12px; padding-top:10px; border-top:1px solid #bae6fd;">
-          <div>SBI monthly EMI: <strong>₹43,391</strong> · Total interest: <strong>₹54,13,800</strong></div>
-          <div>HDFC monthly EMI: <strong>₹44,082</strong> · Total interest: <strong>₹55,79,680</strong></div>
-          <div style="color:#166534; font-weight:700; margin-top:4px;">SBI saves ₹1,65,880 over 20 years — just from 0.25% lower rate</div>
-        </div>
-      </div>
-    </div>
+  <div class="card" id="how-to-use">
+    <h2>3. How to Use the EMI Calculator</h2>
+    <ol>
+      <li style="margin-bottom:12px;"><strong>Enter the loan amount</strong> — This is the amount sanctioned by the bank, not the full property value. If you bought a ₹50 lakh home and paid ₹10 lakh down payment, enter ₹40,00,000.</li>
+      <li style="margin-bottom:12px;"><strong>Enter the interest rate</strong> — Use your bank's current rate. For floating-rate home loans (linked to repo rate), SBI's rate in 2024-25 starts at 8.50%. For car loans, typical rates are 8–10%. For personal loans, 11–18%.</li>
+      <li style="margin-bottom:12px;"><strong>Enter the tenure</strong> — Home loans: 10–30 years. Car loans: 3–7 years. Personal loans: 1–5 years. Try different tenures to see the EMI-interest trade-off.</li>
+      <li style="margin-bottom:12px;"><strong>Read the results</strong> — Monthly EMI, total interest, and total payment appear instantly. The pie chart shows the interest-to-principal split at a glance.</li>
+      <li style="margin-bottom:12px;"><strong>Explore prepayment savings</strong> — Switch to the Prepayment tab to see how a one-time extra payment reduces your tenure and saves total interest. Try entering your annual bonus amount.</li>
+    </ol>
+    <div class="highlight"><strong>Tip:</strong> Use the Compare tab to compare offers from two banks side by side. Even a 0.25% rate difference on a ₹50 lakh home loan saves ₹1.65 lakh over 20 years.</div>
+  </div>
+
+  <div class="card" id="comparison">
+    <h2>4. Home vs Car vs Personal Loan — EMI Comparison</h2>
+    <p>Different loan types have very different EMI characteristics. Here is a comparison of typical loans taken in India in 2024-25:</p>
+    <table>
+      <thead><tr><th>Loan Type</th><th>Typical Amount</th><th>Rate (p.a.)</th><th>Tenure</th><th>Monthly EMI</th><th>Total Interest</th></tr></thead>
+      <tbody>
+        <tr><td>Home Loan</td><td>₹30,00,000</td><td>8.5%</td><td>20 years</td><td>₹26,035</td><td>₹32,48,400</td></tr>
+        <tr><td>Home Loan (SBI)</td><td>₹50,00,000</td><td>8.5%</td><td>20 years</td><td>₹43,391</td><td>₹54,13,840</td></tr>
+        <tr><td>Car Loan</td><td>₹8,00,000</td><td>9.0%</td><td>5 years</td><td>₹16,607</td><td>₹1,96,420</td></tr>
+        <tr><td>Personal Loan</td><td>₹3,00,000</td><td>14.0%</td><td>3 years</td><td>₹10,253</td><td>₹69,108</td></tr>
+        <tr><td>Education Loan</td><td>₹10,00,000</td><td>10.5%</td><td>7 years</td><td>₹16,601</td><td>₹3,94,484</td></tr>
+      </tbody>
+    </table>
+    <p>Notice that personal loans carry the highest rate (14%+) on relatively small amounts and short tenures — yet the total interest can still be significant. Always compare the total interest cost, not just the monthly EMI, when choosing between loan options.</p>
+    <div class="highlight"><strong>Key takeaway:</strong> Home loan interest rates are the lowest among consumer loans because the property itself is collateral. This is why many financial advisors say a home loan is the "cheapest money" you can borrow in India.</div>
+  </div>
+
+  <div class="card" id="amortisation">
+    <h2>5. What is an Amortisation Schedule?</h2>
+    <p>An <strong>amortisation schedule</strong> is a month-by-month table showing exactly how each EMI payment is split between interest and principal repayment, and what your outstanding balance is after each payment.</p>
+    <p>For a ₹30 lakh home loan at 8.5% for 20 years (EMI = ₹26,035), the first and later months look like this:</p>
+    <table>
+      <thead><tr><th>Month</th><th>EMI Paid</th><th>Interest Component</th><th>Principal Component</th><th>Outstanding Balance</th></tr></thead>
+      <tbody>
+        <tr><td>Month 1</td><td>₹26,035</td><td>₹21,250</td><td>₹4,785</td><td>₹29,95,215</td></tr>
+        <tr><td>Month 12</td><td>₹26,035</td><td>₹20,909</td><td>₹5,126</td><td>₹29,55,374</td></tr>
+        <tr><td>Month 60 (Yr 5)</td><td>₹26,035</td><td>₹19,751</td><td>₹6,284</td><td>₹27,86,547</td></tr>
+        <tr><td>Month 120 (Yr 10)</td><td>₹26,035</td><td>₹17,713</td><td>₹8,322</td><td>₹24,98,023</td></tr>
+        <tr><td>Month 180 (Yr 15)</td><td>₹26,035</td><td>₹14,406</td><td>₹11,629</td><td>₹20,30,247</td></tr>
+        <tr><td>Month 240 (Yr 20)</td><td>₹26,035</td><td>₹182</td><td>₹25,853</td><td>₹0</td></tr>
+      </tbody>
+    </table>
+    <p>This table reveals why <strong>early prepayments are so powerful</strong>. In the first year, you pay ₹21,250 interest on Month 1's EMI alone. If you prepay ₹1 lakh in Month 1, you save interest on ₹1 lakh for the remaining 239 months — that's about ₹1.4 lakh in total interest saved from a single ₹1 lakh prepayment.</p>
+    <div class="tip-box">💡 The EMICalc amortisation table shows all 240 rows. You can scroll through or download it to see your exact balance at any point in the loan — useful for income tax filings (Section 24B interest deduction).</div>
+  </div>
+
+  <div class="card" id="reduce">
+    <h2>6. How to Reduce Your EMI</h2>
+    <p>If your EMI is straining your monthly budget, here are five proven ways to bring it down:</p>
+    <ol>
+      <li style="margin-bottom:14px;">
+        <strong>Make a larger down payment</strong><br>
+        Every extra rupee of down payment reduces your loan principal and therefore your EMI. Increasing your down payment from 10% to 20% on a ₹60 lakh home reduces the loan from ₹54L to ₹48L — saving ₹5,452/month in EMI.
+      </li>
+      <li style="margin-bottom:14px;">
+        <strong>Choose a longer tenure</strong><br>
+        Extending from 20 to 25 years on a ₹30L loan at 8.5% drops EMI from ₹26,035 to ₹24,044 — saving ₹1,991/month. The trade-off is you pay more total interest (₹42.1L vs ₹32.5L). Do this only if cash flow is tight.
+      </li>
+      <li style="margin-bottom:14px;">
+        <strong>Balance transfer to a lower rate</strong><br>
+        If your bank rate is 9.5% but another bank offers 8.5%, transferring a ₹30L outstanding loan saves ₹1,972/month in EMI and ₹13.6L in total interest over the remaining 20 years. Use our Balance Transfer Calculator to check your numbers.
+      </li>
+      <li style="margin-bottom:14px;">
+        <strong>Make periodic prepayments</strong><br>
+        When you make a prepayment, choose "Reduce Tenure" rather than "Reduce EMI" to maximise savings. If you must lower monthly outflow, choose "Reduce EMI" and your EMI drops immediately.
+      </li>
+      <li style="margin-bottom:14px;">
+        <strong>Renegotiate your rate</strong><br>
+        If you have been a consistent borrower for 2+ years and have a CIBIL score above 750, you can ask your bank to reduce your rate. Banks often agree rather than risk you doing a balance transfer. A 0.5% rate cut on ₹30L saves approximately ₹986/month.
+      </li>
+    </ol>
+  </div>
+
+  <div class="card" id="tenure">
+    <h2>7. Longer vs Shorter Tenure — Which Saves More?</h2>
+    <p>This is one of the most common dilemmas for home loan borrowers. Here is a direct comparison for a ₹30 lakh home loan at 8.5%:</p>
+    <table>
+      <thead><tr><th>Tenure</th><th>Monthly EMI</th><th>Total Interest Paid</th><th>Total Payment</th></tr></thead>
+      <tbody>
+        <tr><td>10 years</td><td>₹37,194</td><td>₹14,63,280</td><td>₹44,63,280</td></tr>
+        <tr><td>15 years</td><td>₹29,520</td><td>₹23,13,600</td><td>₹53,13,600</td></tr>
+        <tr><td>20 years</td><td>₹26,035</td><td>₹32,48,400</td><td>₹62,48,400</td></tr>
+        <tr><td>25 years</td><td>₹24,044</td><td>₹42,13,200</td><td>₹72,13,200</td></tr>
+        <tr><td>30 years</td><td>₹23,075</td><td>₹53,07,000</td><td>₹83,07,000</td></tr>
+      </tbody>
+    </table>
+    <p>The difference between a 10-year and 30-year tenure on the same ₹30L loan is staggering: <strong>₹38.4 lakh more in total interest</strong> for just ₹14,119 lower monthly EMI.</p>
+    <p><strong>Our recommendation:</strong> Choose the shortest tenure your monthly budget can comfortably support. As a rule of thumb, your total EMI obligations (all loans combined) should not exceed 40–50% of your take-home salary. Use the Affordability tab in EMICalc to find your optimal EMI ceiling.</p>
+    <div class="highlight"><strong>The smart approach:</strong> Take a 20-year tenure (lower EMI, flexibility) but make annual prepayments equal to 1–2 extra EMIs from bonuses. This effectively reduces your tenure to 15–16 years without locking you into a higher mandatory EMI.</div>
+  </div>
+
+  <div class="card" id="tax">
+    <h2>8. Tax Benefits on Home Loan EMI</h2>
+    <p>Home loan borrowers in India can claim two deductions under the <strong>old tax regime</strong>:</p>
+    <table>
+      <thead><tr><th>Section</th><th>What it covers</th><th>Maximum deduction</th><th>Condition</th></tr></thead>
+      <tbody>
+        <tr><td>Section 80C</td><td>Principal repayment</td><td>₹1,50,000/year</td><td>Property must not be sold within 5 years</td></tr>
+        <tr><td>Section 24(b)</td><td>Interest paid</td><td>₹2,00,000/year</td><td>Self-occupied property; possession within 5 years of sanction</td></tr>
+        <tr><td>Section 80EEA</td><td>Additional interest (first-time buyers)</td><td>₹1,50,000/year</td><td>Stamp duty ≤ ₹45L; loan sanctioned Apr 2019–Mar 2022</td></tr>
+      </tbody>
+    </table>
+    <p>For a person in the 30% tax bracket paying ₹2L+ in home loan interest, the Section 24(b) deduction alone saves ₹62,400/year in tax (₹2L × 31.2% including cess).</p>
+    <div class="warning"><strong>Important:</strong> These deductions are available only under the old tax regime. Under the new default regime (from FY 2023-24), home loan interest deduction is not allowed for self-occupied property. Use our <a href="https://nxtcraft.github.io/taxcalc/" style="color:#92400e;font-weight:700;">Income Tax Calculator</a> to compare old vs new regime with your home loan deductions included.</div>
+    <div class="tip-box">💡 Use the Tax Benefit tab in EMICalc to see the exact principal and interest split for each financial year — this is what your CA needs to file your ITR.</div>
   </div>
 
   <div class="cta-box">
-    <h2>Try EMICalc now</h2>
-    <p>Free · No signup · Instant results</p>
+    <h2>Calculate Your EMI Now</h2>
+    <p>Free · No signup · Instant amortisation table · Prepayment calculator included</p>
     <a href="../" class="cta-btn">Open EMICalc →</a>
   </div>
 
-  <h2>Frequently Asked Questions</h2>
-  <details><summary>What is EMI?</summary><p>EMI (Equated Monthly Instalment) is the fixed monthly payment for a loan. It includes principal repayment and interest. EMI = [P × R × (1+R)^N] / [(1+R)^N – 1], where P = principal, R = monthly interest rate, N = tenure in months.</p></details>
-  <details><summary>When is the best time to make a prepayment?</summary><p>As early as possible. In the first few years of a loan, almost all of your EMI goes toward interest. A prepayment at year 3 saves much more than the same prepayment at year 15. Banks typically allow one free prepayment per year on floating rate loans.</p></details>
-  <details><summary>Does reducing tenure vs reducing EMI matter for tax benefits?</summary><p>Your Section 80C deduction (up to ₹1.5L on principal) and Section 24B deduction (up to ₹2L on interest) both remain the same regardless of whether you reduce tenure or EMI. The tax benefit calculation depends on what you actually pay that year — the Tax Benefit tab in EMICalc shows the breakdown.</p></details>
+  <h2 id="faq">9. Frequently Asked Questions</h2>
+  <details><summary>What is EMI?</summary><p>EMI (Equated Monthly Instalment) is the fixed monthly payment you make to your bank to repay a loan. Each EMI has two parts: interest on the outstanding principal, and principal repayment. The ratio changes over time — early EMIs are mostly interest, later ones mostly principal.</p></details>
+  <details><summary>How is EMI calculated?</summary><p>EMI = P × r × (1+r)^n / ((1+r)^n – 1), where P = principal, r = monthly rate (annual rate ÷ 12 ÷ 100), n = months. For ₹30L at 8.5% for 20 years: EMI = ₹26,035. The EMICalc tool does this instantly.</p></details>
+  <details><summary>Can I reduce my EMI after taking a loan?</summary><p>Yes. Make a prepayment and ask the bank to reduce EMI (not tenure), do a balance transfer to a lower-rate bank, or renegotiate your rate. For floating rate loans, your EMI also adjusts when RBI changes the repo rate.</p></details>
+  <details><summary>What happens if I miss an EMI payment?</summary><p>You'll face a late payment penalty (1–2% of EMI), penal interest on the overdue amount, and a negative CIBIL score impact. Missing 3 consecutive EMIs can lead to the account being classified as an NPA. Contact your bank proactively if you anticipate difficulty.</p></details>
+  <details><summary>Is home loan EMI tax deductible?</summary><p>Yes, under the old tax regime. Interest up to ₹2L/year is deductible under Section 24(b). Principal repayment up to ₹1.5L/year is deductible under Section 80C. These deductions are not available under the new default tax regime.</p></details>
 
-  <div style="margin-top:28px; font-size:12px; color:#0ea5e9;">
-    Also try: <a href="https://nxtcraft.github.io/tradecalc/" style="color:#0ea5e9;">TradeCalc — Stock Trading Calculator</a> ·
-    <a href="https://nxtcraft.github.io/" style="color:#0ea5e9;">All NxtCraft Tools</a>
+  <div style="margin-top:36px;">
+    <p style="font-size:14px;font-weight:700;color:#0369a1;margin-bottom:10px;">Related Tools</p>
+    <div class="related-links">
+      <a href="https://nxtcraft.github.io/sipcalc/">📈 SIP Calculator</a>
+      <a href="https://nxtcraft.github.io/fdcalc/">🏧 FD Calculator</a>
+      <a href="https://nxtcraft.github.io/taxcalc/">💰 Income Tax</a>
+      <a href="https://nxtcraft.github.io/tradecalc/">📊 TradeCalc</a>
+      <a href="https://nxtcraft.github.io/">🏠 All Tools</a>
+    </div>
   </div>
 </div>
 
-<footer>&copy; 2026 EMICalc · <a href="https://nxtcraft.github.io/" style="color:#0ea5e9;">NxtCraft Tools</a></footer>
+<footer>&copy; 2026 EMICalc · <a href="https://nxtcraft.github.io/">NxtCraft Tools</a></footer>
 </body>
 </html>
